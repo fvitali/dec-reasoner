@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: it.fabiovitali.dec.DecDatasetTest
+-------------------------------------------------------------------------------
+Tests run: 31, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 1.824 s -- in it.fabiovitali.dec.DecDatasetTest
