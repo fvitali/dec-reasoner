@@ -6,6 +6,12 @@ COPY target/dec-1.0.0.jar /jena-fuseki/
 # Copy your custom config
 COPY src/main/resources/config.ttl /jena-fuseki/config.ttl
 
+# Create and set permissions for Fuseki directories
+RUN mkdir -p /fuseki/databases && chmod 755 /fuseki/databases
+
+# Copy a modified shiro.ini that disables authentication
+COPY src/main/resources/shiro.ini /fuseki/shiro.ini
+
 # Expose Fuseki port
 EXPOSE 3030
 

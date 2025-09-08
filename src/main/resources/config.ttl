@@ -4,7 +4,7 @@
 @prefix fuseki:  <http://jena.apache.org/fuseki#> .
 @prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
 @prefix tdb2:    <http://jena.apache.org/2016/tdb#> .
-@prefix dec:     <http://dec.fabiovitali.it#> .  # Custom namespace for DECdataset
+@prefix dec:     <http://w3id.org/conjectures/> .  # Custom namespace for DECdataset
 
 # Define the service
 [] rdf:type fuseki:Server ;
@@ -33,12 +33,12 @@
     ] ;
     fuseki:dataset :decDataset .
     
-[] ja:loadClass "it.fabiovitali.dec.DecDatasetAssembler" .
+[] ja:loadClass "org.w3id.conjectures.DecDatasetAssembler" .
 
-ja:Dataset ja:assembler "it.fabiovitali.dec.DecDatasetAssembler" .
+ja:Dataset ja:assembler "org.w3id.conjectures.DecDatasetAssembler" .
 
 :decDataset rdf:type ja:Dataset ;  # Instead of dec:DECdataset
-    ja:assembler "it.fabiovitali.dec.DecDatasetAssembler" ;
+    ja:assembler "org.w3id.conjectures.DecDatasetAssembler" ;
     dec:location "" ;
     dec:unionDefaultGraph true ;
     dec:allowUpdate true ;

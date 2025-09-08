@@ -1,0 +1,31 @@
+@prefix ex: <http://example.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+ex:Animal a rdfs:Class .
+ex:Dog a rdfs:Class ;
+       rdfs:subClassOf ex:Animal .
+ex:Buddy a ex:Dog .
+
+ex:graph1 {
+    ex:superman ex:can ex:fly .
+    ex:loislane ex:can ex:walk .
+    ex:lexluthor a ex:criminal. 
+}
+
+ex:graph2 {
+    ex:lexluthor ex:can ex:escape .
+}
+
+ex:lexluthor a ex:criminal. 
+
+ex:superman <http://www.w3.org/2002/07/owl#sameAs> ex:clarkkent .
+ex:superman rdfs:label "Superman" .
+ex:clarkkent rdfs:label "Clark Kent" .
+ex:loislane rdfs:label "Lois Lane" .
+ex:lexluthor rdfs:label "Lex Luthor" .
+ex:can rdfs:label "can" .
+ex:fly rdfs:label "fly" .
+ex:walk rdfs:label "walk" .
+ex:escape rdfs:label "escape" .
+

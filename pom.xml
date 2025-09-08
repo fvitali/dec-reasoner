@@ -4,7 +4,7 @@
                              http://www.maven.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>it.fabiovitali</groupId>
+  <groupId>org.w3id.conjectures</groupId>
   <artifactId>dec</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>

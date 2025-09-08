@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.w3id.conjectures.DecDatasetTest" time="1.491" tests="32" errors="0" skipped="1" failures="0">
+  <properties>
+    <property name="java.specification.version" value="24"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/test-classes:/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/classes:/Users/fabio/.m2/repository/org/apache/jena/jena-core/4.8.0/jena-core-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-base/4.8.0/jena-base-4.8.0.jar:/Users/fabio/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shaded-guava/4.8.0/jena-shaded-guava-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-csv/1.10.0/commons-csv-1.10.0.jar:/Users/fabio/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:/Users/fabio/.m2/repository/commons-codec/commons-codec/1.15/commons-codec-1.15.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-compress/1.23.0/commons-compress-1.23.0.jar:/Users/fabio/.m2/repository/com/github/andrewoma/dexx/collection/0.7/collection-0.7.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-iri/4.8.0/jena-iri-4.8.0.jar:/Users/fabio/.m2/repository/commons-cli/commons-cli/1.5.0/commons-cli-1.5.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-arq/4.8.0/jena-arq-4.8.0.jar:/Users/fabio/.m2/repository/com/github/jsonld-java/jsonld-java/0.13.4/jsonld-java-0.13.4.jar:/Users/fabio/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpclient-cache/4.5.14/httpclient-cache-4.5.14.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpcore/4.4.16/httpcore-4.4.16.jar:/Users/fabio/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.36/jcl-over-slf4j-1.7.36.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.14.2/jackson-core-2.14.2.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.14.2/jackson-databind-2.14.2.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.14.2/jackson-annotations-2.14.2.jar:/Users/fabio/.m2/repository/com/apicatalog/titanium-json-ld/1.3.2/titanium-json-ld-1.3.2.jar:/Users/fabio/.m2/repository/org/glassfish/jakarta.json/2.0.1/jakarta.json-2.0.1.jar:/Users/fabio/.m2/repository/com/google/protobuf/protobuf-java/3.22.2/protobuf-java-3.22.2.jar:/Users/fabio/.m2/repository/org/apache/thrift/libthrift/0.18.1/libthrift-0.18.1.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-main/4.8.0/jena-fuseki-main-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-core/4.8.0/jena-fuseki-core-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-rdfpatch/4.8.0/jena-rdfpatch-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shacl/4.8.0/jena-shacl-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shex/4.8.0/jena-shex-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-tdb/4.8.0/jena-tdb-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-rdfconnection/4.8.0/jena-rdfconnection-4.8.0.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-servlet/10.0.14/jetty-servlet-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-security/10.0.14/jetty-security-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-server/10.0.14/jetty-server-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/toolchain/jetty-servlet-api/4.0.6/jetty-servlet-api-4.0.6.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-servlets/10.0.14/jetty-servlets-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-http/10.0.14/jetty-http-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-io/10.0.14/jetty-io-10.0.14.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-core/1.10.5/micrometer-core-1.10.5.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-commons/1.10.5/micrometer-commons-1.10.5.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-observation/1.10.5/micrometer-observation-1.10.5.jar:/Users/fabio/.m2/repository/org/hdrhistogram/HdrHistogram/2.1.12/HdrHistogram-2.1.12.jar:/Users/fabio/.m2/repository/org/latencyutils/LatencyUtils/2.0.3/LatencyUtils-2.0.3.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-registry-prometheus/1.10.5/micrometer-registry-prometheus-1.10.5.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_common/0.16.0/simpleclient_common-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient/0.16.0/simpleclient-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_otel/0.16.0/simpleclient_tracer_otel-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_common/0.16.0/simpleclient_tracer_common-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_otel_agent/0.16.0/simpleclient_tracer_otel_agent-0.16.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-access/4.8.0/jena-fuseki-access-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-cmds/4.8.0/jena-cmds-4.8.0.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-xml/10.0.14/jetty-xml-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-util/10.0.14/jetty-util-10.0.14.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-tdb2/4.8.0/jena-tdb2-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-storage/4.8.0/jena-dboe-storage-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-trans-data/4.8.0/jena-dboe-trans-data-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-transaction/4.8.0/jena-dboe-transaction-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-base/4.8.0/jena-dboe-base-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-index/4.8.0/jena-dboe-index-4.8.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/fabio/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/fabio/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/fabio/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:"/>
+    <property name="java.vm.vendor" value="Homebrew"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
+    <property name="user.timezone" value="Europe/Rome"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="java.vm.specification.version" value="24"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="IT"/>
+    <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/24.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire/surefirebooter-20250908070849337_3.jar /Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire 2025-09-08T07-08-49_305-jvmRun1 surefire-20250908070849337_1tmp surefire_0-20250908070849337_2tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/test-classes:/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/classes:/Users/fabio/.m2/repository/org/apache/jena/jena-core/4.8.0/jena-core-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-base/4.8.0/jena-base-4.8.0.jar:/Users/fabio/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shaded-guava/4.8.0/jena-shaded-guava-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-csv/1.10.0/commons-csv-1.10.0.jar:/Users/fabio/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:/Users/fabio/.m2/repository/commons-codec/commons-codec/1.15/commons-codec-1.15.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-compress/1.23.0/commons-compress-1.23.0.jar:/Users/fabio/.m2/repository/com/github/andrewoma/dexx/collection/0.7/collection-0.7.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-iri/4.8.0/jena-iri-4.8.0.jar:/Users/fabio/.m2/repository/commons-cli/commons-cli/1.5.0/commons-cli-1.5.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-arq/4.8.0/jena-arq-4.8.0.jar:/Users/fabio/.m2/repository/com/github/jsonld-java/jsonld-java/0.13.4/jsonld-java-0.13.4.jar:/Users/fabio/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpclient-cache/4.5.14/httpclient-cache-4.5.14.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpcore/4.4.16/httpcore-4.4.16.jar:/Users/fabio/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.36/jcl-over-slf4j-1.7.36.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.14.2/jackson-core-2.14.2.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.14.2/jackson-databind-2.14.2.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.14.2/jackson-annotations-2.14.2.jar:/Users/fabio/.m2/repository/com/apicatalog/titanium-json-ld/1.3.2/titanium-json-ld-1.3.2.jar:/Users/fabio/.m2/repository/org/glassfish/jakarta.json/2.0.1/jakarta.json-2.0.1.jar:/Users/fabio/.m2/repository/com/google/protobuf/protobuf-java/3.22.2/protobuf-java-3.22.2.jar:/Users/fabio/.m2/repository/org/apache/thrift/libthrift/0.18.1/libthrift-0.18.1.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-main/4.8.0/jena-fuseki-main-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-core/4.8.0/jena-fuseki-core-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-rdfpatch/4.8.0/jena-rdfpatch-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shacl/4.8.0/jena-shacl-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shex/4.8.0/jena-shex-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-tdb/4.8.0/jena-tdb-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-rdfconnection/4.8.0/jena-rdfconnection-4.8.0.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-servlet/10.0.14/jetty-servlet-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-security/10.0.14/jetty-security-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-server/10.0.14/jetty-server-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/toolchain/jetty-servlet-api/4.0.6/jetty-servlet-api-4.0.6.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-servlets/10.0.14/jetty-servlets-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-http/10.0.14/jetty-http-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-io/10.0.14/jetty-io-10.0.14.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-core/1.10.5/micrometer-core-1.10.5.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-commons/1.10.5/micrometer-commons-1.10.5.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-observation/1.10.5/micrometer-observation-1.10.5.jar:/Users/fabio/.m2/repository/org/hdrhistogram/HdrHistogram/2.1.12/HdrHistogram-2.1.12.jar:/Users/fabio/.m2/repository/org/latencyutils/LatencyUtils/2.0.3/LatencyUtils-2.0.3.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-registry-prometheus/1.10.5/micrometer-registry-prometheus-1.10.5.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_common/0.16.0/simpleclient_common-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient/0.16.0/simpleclient-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_otel/0.16.0/simpleclient_tracer_otel-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_common/0.16.0/simpleclient_tracer_common-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_otel_agent/0.16.0/simpleclient_tracer_otel_agent-0.16.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-access/4.8.0/jena-fuseki-access-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-cmds/4.8.0/jena-cmds-4.8.0.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-xml/10.0.14/jetty-xml-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-util/10.0.14/jetty-util-10.0.14.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-tdb2/4.8.0/jena-tdb2-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-storage/4.8.0/jena-dboe-storage-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-trans-data/4.8.0/jena-dboe-trans-data-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-transaction/4.8.0/jena-dboe-transaction-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-base/4.8.0/jena-dboe-base-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-index/4.8.0/jena-dboe-index-4.8.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/fabio/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/fabio/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/fabio/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/fabio"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-04-15"/>
+    <property name="java.home" value="/opt/homebrew/Cellar/openjdk/24.0.1/libexec/openjdk.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="apple.awt.application.name" value="ForkedBooter"/>
+    <property name="surefire.real.class.path" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire/surefirebooter-20250908070849337_3.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="24.0.1"/>
+    <property name="user.name" value="fabio"/>
+    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="15.3.2"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Homebrew"/>
+    <property name="localRepository" value="/Users/fabio/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/Homebrew/homebrew-core/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/_b/tf2lmwg153x27bykfq_xhy6r0000gn/T/"/>
+    <property name="java.version" value="24.0.1"/>
+    <property name="user.dir" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="native.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/fabio/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="UTF-8"/>
+    <property name="java.vendor" value="Homebrew"/>
+    <property name="java.vm.version" value="24.0.1"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.class.version" value="68.0"/>
+  </properties>
+  <testcase name="test001_TDB2Dataset" classname="org.w3id.conjectures.DecDatasetTest" time="0.259">
+    <system-out><![CDATA[
+----------------------------
+ 1 testTDB2Dataset
+----------------------------   
+   TDB2 dataset created successfully as expected                
+]]></system-out>
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+  </testcase>
+  <testcase name="test002_InMemoryDataset" classname="org.w3id.conjectures.DecDatasetTest" time="0.001">
+    <system-out><![CDATA[
+----------------------------
+ 2 testInMemoryDataset
+----------------------------               
+   In-memory dataset created successfully as expected           
+]]></system-out>
+  </testcase>
+  <testcase name="test003_GetInstance" classname="org.w3id.conjectures.DecDatasetTest" time="0.001">
+    <system-out><![CDATA[
+----------------------------
+ 3 testGetInstance
+----------------------------   
+   getInstance() returned correct dataset instance as expected  
+   getInstance() returned correct dataset instance as expected  
+]]></system-out>
+  </testcase>
+  <testcase name="test004_QueryTimeout" classname="org.w3id.conjectures.DecDatasetTest" time="0.0">
+    <system-out><![CDATA[
+----------------------------
+ 4 testQueryTimeout
+----------------------------  
+   Query timeout set correctly to 30000 as expected             
+]]></system-out>
+  </testcase>
+  <testcase name="test005_AllowUpdate" classname="org.w3id.conjectures.DecDatasetTest" time="0.001">
+    <system-out><![CDATA[
+----------------------------
+ 5 testAllowUpdate
+----------------------------   
+   Dataset allows updates as expected           
+]]></system-out>
+  </testcase>
+  <testcase name="test006_AddQuad" classname="org.w3id.conjectures.DecDatasetTest" time="0.056">
+    <system-out><![CDATA[
+----------------------------
+ 6 testAddQuad
+----------------------------       
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Quad added successfully to dataset as expected               
+]]></system-out>
+  </testcase>
+  <testcase name="test007_AddRdfStarTriple" classname="org.w3id.conjectures.DecDatasetTest" time="0.013">
+    <system-out><![CDATA[
+----------------------------
+ 7 testAddRdfStarTriple
+----------------------------              
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   RDF* triple added successfully to dataset as expected        
+]]></system-out>
+  </testcase>
+  <testcase name="test008_AddDecStatement" classname="org.w3id.conjectures.DecDatasetTest" time="0.002">
+    <system-out><![CDATA[
+----------------------------
+ 8 testAddDecStatement
+----------------------------               
+   DEC statement added successfully to DecStatements map as expected            
+]]></system-out>
+  </testcase>
+  <testcase name="test010_Clear" classname="org.w3id.conjectures.DecDatasetTest" time="0.012">
+    <system-out><![CDATA[
+----------------------------
+ 10 testClear
+----------------------------        
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Dataset contains all quads as expected       
+Clearing data structures        
+
+permeating     
+   Dataset is empty after clear as expected     
+]]></system-out>
+  </testcase>
+  <testcase name="test011_ClearAllSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.036">
+    <system-out><![CDATA[
+----------------------------
+ 11 testClearAllSparql
+----------------------------               
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Dataset contains quads after SPARQL insert as expected       
+   Dataset is empty after CLEAR ALL as expected 
+]]></system-out>
+  </testcase>
+  <testcase name="test012_SingleQuadSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.031">
+    <system-out><![CDATA[
+----------------------------
+ 12 testSingleQuadSparql
+----------------------------             
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Single quad added successfully via SPARQL as expected        
+]]></system-out>
+  </testcase>
+  <testcase name="test013_MultipleQuadsSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.013">
+    <system-out><![CDATA[
+----------------------------
+ 13 testMultipleQuadsSparql
+----------------------------          
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Multiple quads added successfully via SPARQL as expected     
+]]></system-out>
+  </testcase>
+  <testcase name="test014_DeleteQuadsSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.015">
+    <system-out><![CDATA[
+----------------------------
+ 14 testDeleteQuadsSparql
+----------------------------            
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Quad in g2 preserved successfully after deletion as expected 
+   Quad in g1 deleted successfully as expected  
+]]></system-out>
+  </testcase>
+  <testcase name="test015_DecStatements" classname="org.w3id.conjectures.DecDatasetTest" time="0.0">
+    <system-out><![CDATA[
+----------------------------
+ 15 testDecStatements
+----------------------------                
+   All DEC statements found in DecStatements map as expected    
+   All DEC statements stored with correct triples as expected   
+]]></system-out>
+  </testcase>
+  <testcase name="test016_DoxasticGraphWithRdfType" classname="org.w3id.conjectures.DecDatasetTest" time="0.39">
+    <system-out><![CDATA[
+----------------------------
+ 16 testDoxasticGraphWithRdfType
+----------------------------     
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   DecReasoner has same validity as direct OWL reasoning        
+   DecReasoner has same number of validity issues as direct OWL reasoning       
+   Both reasoners made the same inference about A being of type B               
+]]></system-out>
+  </testcase>
+  <testcase name="test017_VerbatimGraphWithSaysRange" classname="org.w3id.conjectures.DecDatasetTest" time="0.018">
+    <system-out><![CDATA[
+----------------------------
+ 17 testVerbatimGraphWithSaysRange
+----------------------------   
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:Alice        ex:says         ex:g1           
+        ex:g1           rdf:type        dec:verbatimWorld               
+        ex:says         rdfs:range      dec:verbatimWorld               
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Alice says g1 as expected    
+   says predicate has correct verbatim range as expected        
+]]></system-out>
+  </testcase>
+  <testcase name="test018_SubClassInference" classname="org.w3id.conjectures.DecDatasetTest" time="0.013">
+    <system-out><![CDATA[
+----------------------------
+ 18 testSubClassInference
+----------------------------            
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   a is of type B as expected   
+   B is subclass of C as expected               
+   a is inferred to be of type C as expected    
+]]></system-out>
+  </testcase>
+  <testcase name="test019_SubclassInferenceSelect" classname="org.w3id.conjectures.DecDatasetTest" time="0.022">
+    <system-out><![CDATA[
+----------------------------
+ 19 testSubclassInferenceSelect
+----------------------------      
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   a is of type B as expected   
+   B is subclass of C as expected               
+   a is inferred to be of type C as expected    
+]]></system-out>
+  </testcase>
+  <testcase name="test020_SubclassInferenceConstruct" classname="org.w3id.conjectures.DecDatasetTest" time="0.008">
+    <system-out><![CDATA[
+----------------------------
+ 20 testSubclassInferenceConstruct
+----------------------------   
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   a is inferred to be of type C as expected    
+]]></system-out>
+  </testcase>
+  <testcase name="test021_MultipleGraphTypes" classname="org.w3id.conjectures.DecDatasetTest" time="0.097">
+    <system-out><![CDATA[
+----------------------------
+ 21 testMultipleGraphTypes
+----------------------------           
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:g2           rdf:type        dec:verbatimWorld               
+        ex:g1           rdf:type        dec:sharedWorld 
+        ex:g3           rdf:type        dec:doxasticWorld               
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Entity a is of type E in default graph as expected           
+   Entity a is not of type E in graph g3 as expected            
+   Entity a is of type D in graph g3 as expected                
+   Entity a is not of type D in default graph as expected       
+   Entity a is not of type B in graph g2 as expected            
+   Entity a is not of type C in graph g2 as expected            
+]]></system-out>
+  </testcase>
+  <testcase name="test022_MultipleGraphTypesWithPredicates" classname="org.w3id.conjectures.DecDatasetTest" time="0.101">
+    <system-out><![CDATA[
+----------------------------
+ 22 testMultipleGraphTypesWithPredicates
+----------------------------             
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:g3           rdf:type        dec:doxasticWorld               
+        ex:g1           rdf:type        dec:sharedWorld 
+        ex:knows        rdf:type        dec:epistemicPredicate          
+        ex:believes     rdf:type        dec:doxasticPredicate           
+        ex:g2           rdf:type        dec:epistemicWorld              
+        ex:bruce        ex:believes     ex:g3           
+        ex:alice        ex:knows        ex:g2           
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Entity a is of type E in default graph as expected           
+   Entity a is not of type E in graph g3 as expected            
+   Entity a is of type D in graph g3 as expected                
+   Entity a is not of type D in default graph as expected       
+   Entity a is of type C in default graph as expected           
+   Entity a is not of type C in graph g3 as expected            
+]]></system-out>
+  </testcase>
+  <testcase name="test023_OwlReasoningComparison" classname="org.w3id.conjectures.DecDatasetTest" time="0.155">
+    <system-out><![CDATA[
+----------------------------
+ 23 testOwlReasoningComparison
+----------------------------       
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   DecReasoner has same validity as direct OWL reasoning        
+   DecReasoner has same number of validity issues as direct OWL reasoning: 7    
+   Both reasoners made the same inference about A being of type B               
+]]></system-out>
+  </testcase>
+  <testcase name="test024_RdfStarWithSameAsDoxastic" classname="org.w3id.conjectures.DecDatasetTest" time="0.03">
+    <system-out><![CDATA[
+----------------------------
+ 24 testRdfStarWithSameAsDoxastic
+----------------------------    
+Hash for        ex:LoisLane     ex:thinks       << ex:superman @ex:can ex:fly >>                is              dec:rdfstar/856712df#ex:LoisLane                
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:LoisLane     ex:thinks       dec:rdfstar/856712df#ex:LoisLane                
+        ex:thinks       rdf:type        dec:doxasticPredicate           
+        dec:rdfstar/856712df#ex:LoisLane                rdf:type        dec:doxasticWorld               
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   It is not stated that ClarkKent can fly, as expected         
+   LoisLane does not think ClarkKent can fly as expected        
+]]></system-out>
+  </testcase>
+  <testcase name="test025_RdfStarWithSameAsConjectural" classname="org.w3id.conjectures.DecDatasetTest" time="0.046">
+    <system-out><![CDATA[
+----------------------------
+ 25 testRdfStarWithSameAsConjectural
+---------------------------- 
+Hash for        ex:MotherKent   ex:supposes     << ex:superman @ex:can ex:fly >>                is              dec:rdfstar/b4ba0e5c#ex:MotherKent              
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        dec:rdfstar/b4ba0e5c#ex:MotherKent              rdf:type        dec:conjecturalWorld            
+        ex:supposes     rdf:type        dec:conjecturalPredicate        
+        ex:MotherKent   ex:supposes     dec:rdfstar/b4ba0e5c#ex:MotherKent              
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   It is not stated that ClarkKent can fly, as expected         
+   MotherKent supposes ClarkKent can fly as expected            
+]]></system-out>
+  </testcase>
+  <testcase name="test026_RdfStarWithSameAsEpistemic" classname="org.w3id.conjectures.DecDatasetTest" time="0.031">
+    <system-out><![CDATA[
+----------------------------
+ 26 testRdfStarWithSameAsEpistemic
+----------------------------   
+Hash for        ex:superman     ex:knows        << ex:superman @ex:can ex:fly >>                is              dec:rdfstar/6adccb70#ex:superman                
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:knows        rdf:type        dec:epistemicPredicate          
+        dec:rdfstar/6adccb70#ex:superman                rdf:type        dec:epistemicWorld              
+        ex:superman     ex:knows        dec:rdfstar/6adccb70#ex:superman                
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   It is stated that ClarkKent can fly, as expected             
+   Superman does not know ClarkKent can fly as expected         
+]]></system-out>
+  </testcase>
+  <testcase name="test027_ReifiedTriplesWithSameAsDoxastic" classname="org.w3id.conjectures.DecDatasetTest" time="0.031">
+    <system-out><![CDATA[
+----------------------------
+ 27 testReifiedTriplesWithSameAsDoxastic
+----------------------------             
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:LoisLane     ex:thinks       dec:reification/4091e795#ex:LoisLane            
+        dec:reification/4091e795#ex:LoisLane            rdf:type        dec:doxasticWorld               
+        ex:thinks       rdf:type        dec:doxasticPredicate           
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   It is not stated that ClarkKent can fly, as expected         
+   LoisLane does not think ClarkKent can fly as expected        
+]]></system-out>
+  </testcase>
+  <testcase name="test028_ReifiedTriplesWithSameAsConjectural" classname="org.w3id.conjectures.DecDatasetTest" time="0.0">
+    <skipped message="public void org.w3id.conjectures.DecDatasetTest.test028_ReifiedTriplesWithSameAsConjectural() is @Disabled"/>
+  </testcase>
+  <testcase name="test029_ReifiedTriplesWithSameAsEpistemic" classname="org.w3id.conjectures.DecDatasetTest" time="0.02">
+    <system-out><![CDATA[
+----------------------------
+ 29 testReifiedTriplesWithSameAsEpistemic
+----------------------------            
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:knows        rdf:type        dec:epistemicPredicate          
+        dec:reification/8c66efa6#ex:superman            rdf:type        dec:epistemicWorld              
+        ex:superman     ex:knows        dec:reification/8c66efa6#ex:superman            
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   It is stated that ClarkKent can fly, as expected             
+]]></system-out>
+  </testcase>
+  <testcase name="test030_ReifiedTriplesWithSameAsNirvana" classname="org.w3id.conjectures.DecDatasetTest" time="0.02">
+    <system-out><![CDATA[
+----------------------------
+ 30 testReifiedTriplesWithSameAsNirvana
+----------------------------              
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:knows        rdf:type        dec:epistemicPredicate          
+        dec:reification/8c66efa6#ex:superman            rdf:type        dec:epistemicWorld              
+        ex:superman     ex:knows        dec:reification/8c66efa6#ex:superman            
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   It is stated that ClarkKent can fly, as expected             
+]]></system-out>
+  </testcase>
+  <testcase name="test031_InferenceWithClearAll" classname="org.w3id.conjectures.DecDatasetTest" time="0.039">
+    <system-out><![CDATA[
+----------------------------
+ 31 testInferenceWithClearAll
+----------------------------        
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+
+        Current decStatement graph:             
+        ex:conjecturalGraph             rdf:type        dec:conjecturalWorld            
+        ex:epistemicGraph               rdf:type        dec:epistemicWorld              
+        
+        
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Mario correctly inferred as instance of Animal               
+   Alice correctly inferred as instance of Animal in conjectural graph          
+   Alice correctly not inferred as instance of Animal in default graph          
+   Query returned results as expected           
+   Dataset is empty after CLEAR ALL as expected 
+]]></system-out>
+  </testcase>
+  <testcase name="test032_BaseTest" classname="org.w3id.conjectures.DecDatasetTest" time="0.009">
+    <system-out><![CDATA[
+----------------------------
+ 32 testBaseTest
+----------------------------     
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+
+    ====================== content of result set ==========================     
+    ex:g2           ex:A            rdfs:subClassOf ex:C            
+                    rdf:object      rdf:type        rdfs:Resource   
+                    rdf:object      rdfs:subPropertyOf              rdf:object      
+                    rdf:object      rdfs:domain     rdfs:Resource   
+                    rdf:object      rdfs:domain     rdf:Statement   
+                    rdf:object      rdf:type        rdf:Property    
+                    ex:entityX      rdf:type        ex:B            
+                    ex:entityX      rdf:type        ex:A            
+                    ex:B            rdf:type        rdfs:Resource   
+                    ex:B            rdf:type        rdfs:Class      
+                    ex:A            rdf:type        rdfs:Resource   
+                    ex:A            rdf:type        rdfs:Class      
+                    ex:A            rdfs:subClassOf ex:B            
+                    rdf:subject     rdf:type        rdfs:Resource   
+                    rdf:subject     rdfs:subPropertyOf              rdf:subject     
+                    rdf:subject     rdfs:domain     rdfs:Resource   
+                    rdf:subject     rdfs:domain     rdf:Statement   
+                    rdf:subject     rdf:type        rdf:Property    
+    plus 634 trivial triples        
+    =======================================================================         
+    
+]]></system-out>
+  </testcase>
+  <testcase name="test033_OwlInconsistency" classname="org.w3id.conjectures.DecDatasetTest" time="0.007">
+    <system-out><![CDATA[
+----------------------------
+ 33 testOwlInconsistency
+----------------------------             
+
+permeating     
+    clearDecData                
+    handleReifications          
+    assignDecTypes              
+    assignDecPredicates         
+    assignDecPointOfViewPredicates              
+    assignDecPermeationsAndInferenceSettings    
+    completato  
+Before inference                
+    verifyClosedFor             
+    verifyInconsistencies       
+    prepareRestore              
+    restoreReifications         
+    restoreRdfTriples           
+    restoreDefaultGraph         
+Finished permeating
+            
+   Both inconsistent triples exist as expected  
+]]></system-out>
+  </testcase>
+</testsuite>
