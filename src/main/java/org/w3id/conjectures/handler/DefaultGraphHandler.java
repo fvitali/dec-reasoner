@@ -16,13 +16,14 @@ public class DefaultGraphHandler {
     private static final Node URI3 = Node.ANY;
     private static final Node URI4 = null;
 
-    private static final int debug = 1;
+    private static int debug ;
 	private final DecDataset				dataset;
 	private final Map<Node, DecWorld>	worlds;
 
 	public DefaultGraphHandler(DecDataset dataset) {
 		this.dataset = dataset;
 		this.worlds = dataset.getWorlds();
+		debug = DecUtils.getDebugLevel(5); // Position 5 for DefaultGraphHandler
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {

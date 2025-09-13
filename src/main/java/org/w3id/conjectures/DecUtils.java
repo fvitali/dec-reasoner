@@ -39,12 +39,11 @@ import java.io.File;
 
 @SuppressWarnings("unused")
 public class DecUtils {
-	private static final int debug = 0;
+	private static int debug = 0;
 	private static int countTrivial = 0;
 	/**
 	 * Private constructor to prevent instantiation of the utility class.
 	 */
-	private DecUtils() {}
 
 	public static final String decPrefix = "http://w3id.org/conjectures/";
 //	public static final String disagreementsPrefix = "http://disagreements.fabiovitali.it/";
@@ -119,6 +118,11 @@ public class DecUtils {
 	public static final Map<String, String> DECtypes = new HashMap<>();
 	public static final Map<String, String> DECpredicateTypes = new HashMap<>();
 	public static final Map<String, String> DECReversePredicateTypes = new HashMap<>();
+
+	private static int[] loggingLevels;
+	private static final int DEFAULT_LOG_LEVEL = 1;
+	private static final int LOGGING_LEVELS_SIZE = 11;
+
 	static {
 		for (String category : decCategories) {
 			DECtypes.put(decPrefix + category + "World", category);
@@ -686,6 +690,36 @@ public class DecUtils {
 	}
 
 
-
+	public static void setDebugLevel(String levels) {
+		String[] levelStrings = levels.split(" ");
+		loggingLevels = new int[LOGGING_LEVELS_SIZE];
+		if (levelStrings.length == 1) {
+			try {
+				int level = Integer.parseInt(levelStrings[0]);
+				Arrays.fill(loggingLevels, level);
+			} catch (NumberFormatException e) {
+				Arrays.fill(loggingLevels, DEFAULT_LOG_LEVEL);
+			}
+		} else {
+			for (int i = 0; i < LOGGING_LEVELS_SIZE; i++) {
+				try {
+					if (i < levelStrings.length) {
+						loggingLevels[i] = Integer.parseInt(levelStrings[i]);
+					} else {
+						loggingLevels[i] = DEFAULT_LOG_LEVEL;
+					}
+				} catch (NumberFormatException e) {
+					loggingLevels[i] = DEFAULT_LOG_LEVEL;
+				}
+			}
+		}
+	}
+	public static int getDebugLevel(int n) {
+		if (n >= 0 && n < loggingLevels.length) {
+			return loggingLevels[n];
+		}
+		return 1; // Default level if out of bounds
+	}
+	
 
 }

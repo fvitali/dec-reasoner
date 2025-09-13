@@ -9,7 +9,7 @@ import org.apache.jena.sparql.core.*;
 
 public class NamedGraphHandler {
   
-    private static final int debug = 1;
+    private static int debug = 1;
 	private final DecDataset				dataset;
 
 	private final Map<Node, DecWorld>	worlds;
@@ -17,6 +17,7 @@ public class NamedGraphHandler {
 	public NamedGraphHandler(DecDataset dataset) {
 		this.dataset = dataset;
 		this.worlds = dataset.getWorlds();
+		debug = DecUtils.getDebugLevel(6); // Position 6 for NamedGraphHandler
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {

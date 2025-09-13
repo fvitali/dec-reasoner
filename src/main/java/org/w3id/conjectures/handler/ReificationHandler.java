@@ -9,7 +9,7 @@ import org.apache.jena.sparql.graph.GraphFactory;
 
 public class ReificationHandler {
   
-    private static final int debug = 1;
+    private static int debug = 1;
 	private final DecDataset				dataset;
 
 	private final Map<Node, DecWorld>	worlds;

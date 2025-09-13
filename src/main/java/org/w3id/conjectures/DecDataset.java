@@ -39,7 +39,7 @@ import org.apache.jena.reasoner.ValidityReport;
 
 @SuppressWarnings("unused")
 public class DecDataset implements DatasetGraph {
-	private static final int debug = 1;
+	private static int debug = 1;
 	private static final String DEFAULT_LOCATION = "/tmp/dec-dataset";
 
 	private static DecDataset instance;	
@@ -56,6 +56,7 @@ public class DecDataset implements DatasetGraph {
 	private final boolean unionDefaultGraph;
 	private final boolean allowUpdate;
 	private final int queryTimeout;	
+
 
 	final Map<Node, DecWorld>	worlds 			= new HashMap<>();
 	final Map<Quad, String> 		rdfStarTriples		= new HashMap<>();
@@ -81,7 +82,8 @@ public class DecDataset implements DatasetGraph {
 			boolean unionDefaultGraph, 
 			boolean allowUpdate, 
 			int queryTimeout, 
-			Reasoner baseReasoner) {
+			Reasoner baseReasoner, 
+			String levels) {
 
 		DecDataset.instance = this;
 		Dataset dataset;
@@ -99,6 +101,9 @@ public class DecDataset implements DatasetGraph {
 		this.allowUpdate = allowUpdate;
 		this.queryTimeout = queryTimeout;
 		this.baseReasoner = baseReasoner;
+
+		DecUtils.setDebugLevel(levels);
+		this.debug = DecUtils.getDebugLevel(1); // Position 1 for DecDataset
 
 		this.dgh = new DefaultGraphHandler(this);
 		this.ngh = new NamedGraphHandler(this);
@@ -198,25 +203,19 @@ public class DecDataset implements DatasetGraph {
 				inferencesPending = false;
 				inferencesPending = worlds.values().stream().anyMatch(DecWorld::isNotReady);
 				if (!inferencesPending) return;
-				if (debug >= 3) DecUtils.out("   Starting permeating");
-
 		
 				dsh.clearDecData();
 				reh.handleReifications();
 				dsh.assignDecTypes();
 				dsh.assignDecPermeationsAndInferenceSettings();
 
-				if (debug >= 1) DecUtils.out("Before inference");
 				worlds.values().forEach(world -> {
-					if (debug >= 3) DecUtils.out("   Getting inf model for ", world.getName(), 8);
+					if (debug >= 1) DecUtils.out("getting PermeatedGraph for", world.getName(), 4); 
 					world.getPermeatedGraph();
 				});
 				dsh.verifyClosedFor();
 				dsh.verifyInconsistencies();
 				
-				String decStatementWorldS = DecUtils.decPrefix + "statements" ;
-				DecWorld decWorld = worlds.get(NodeFactory.createURI(decStatementWorldS));
-				if (debug >= 1 && decWorld != null) DecUtils.out("Current decStatement graph: ", decWorld.getPermeatedGraph(), false, 8);
 				prepareRestore();
 				reh.restoreReifications();
 				rsh.restoreRdfStarTriples();
@@ -235,6 +234,7 @@ public class DecDataset implements DatasetGraph {
 	 * Checks the consistency of the dataset.
 	 */
 	public void checkConsistency() {
+
 		if (debug >= 1) DecUtils.out("checkConsistency",4);
 	worlds.values().forEach(world -> {
 		InfModel infModel = world.getInfModel();
@@ -1285,6 +1285,5 @@ public class DecDataset implements DatasetGraph {
 		
 		return result;
 	}
-
 
 }

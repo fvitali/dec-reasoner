@@ -9,7 +9,7 @@ import org.apache.jena.sparql.core.Quad;
 
 public class RDFStarHandler {
   
-    private static final int debug = 1;
+    private static int debug = 1;
 	private final DecDataset dataset;
 
 	private final Map<Node, DecWorld>	worlds;
@@ -20,6 +20,7 @@ public class RDFStarHandler {
 	public RDFStarHandler(DecDataset dataset) {
 		this.dataset = dataset;
 		this.worlds = dataset.getWorlds();
+		debug = DecUtils.getDebugLevel(7); // Position 7 for RDFStarHandler
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {

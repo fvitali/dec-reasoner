@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
 public class DecWorld {
-    private static final int debug = 0;
+    private static int debug = 0;
     private DecWorld world;
     private String name;
     private String graphType;
@@ -44,7 +44,7 @@ public class DecWorld {
     private List<DecWorld> permeations;
     private boolean enableInference;
 
-    private static final ThreadLocal<Integer> infModelCallDepth = ThreadLocal.withInitial(() -> 0);
+    private final ThreadLocal<Integer> infModelCallDepth = ThreadLocal.withInitial(() -> 0);
 
     // Default constructor (not recommended, but included for flexibility)
     public DecWorld() {
@@ -64,6 +64,9 @@ public class DecWorld {
 
     // Constructor for graph-based world
     public DecWorld(String name, String graphType, Graph baseGraph, DecDataset decDataset) {
+        int debugLevel = DecUtils.getDebugLevel(3); // Position 3 for DecWorld
+        // Set the debug level for this class
+        this.debug = debugLevel;
         if (debug >= 2) DecUtils.out("Creating graph-based world: " + name + " of type " + graphType);
         this.world = this;
         this.name = name;
@@ -109,23 +112,28 @@ public class DecWorld {
     public boolean isPointOfView() { return pointOfView; }
 
     public Graph getBaseGraph() { return baseGraph; }
-    public Graph getPermeatedGraph() { return getInfModel().getGraph(); }
+    public Graph getPermeatedGraph() { 
+        if (debug >= 2) DecUtils.out("getPermeatedGraph for", name, 8); 
+        if (debug >= 3) DecUtils.out("Permeations:", permeations.size() > 0 ? showPermeations() : "none", ready?"ready":"not ready", 8);  
+        return getInfModel().getGraph(); 
+    }
 
     public InfModel getInfModel() {
         int currentDepth = infModelCallDepth.get();
-        if (currentDepth >= 3) {
-            DecUtils.out("Breaking due to nested getInfModel calls for ", name, 4);
-//            Thread.dumpStack();
+
+        if (debug >= 3) {
+            DecUtils.out("getInfModel for", name, String.valueOf(currentDepth), 8); 
+        }
+
+        if (currentDepth >= 2) {
+            DecUtils.out("!!! Nested getInfModel calls for", name, String.valueOf(currentDepth), 12);
+            Thread.dumpStack();
             return null; // or handle appropriately
         }
         infModelCallDepth.set(currentDepth + 1);
         try {
-            if (debug >= 2) DecUtils.out("   DecWorld: getInfModel: " + name + " ready: " + ready + 
-            " infModel: " + (infModel==null ? "null" : "not null " + (infModel.isEmpty() ? "empty" : "not empty")));
 
             if (!ready || (infModel == null)) {
-                if (debug >= 2) DecUtils.out("   infModel not ready for " + name + " with permeations: " + permeations.stream().map(DecWorld::getName).collect(Collectors.joining(", ")));
-                
                 Model baseModel;
 
                 if (baseGraph == null || baseGraph.isEmpty()) {
@@ -135,9 +143,8 @@ public class DecWorld {
                 }
                int baseCount = DecUtils.countTriples(baseModel.getGraph());
 
-                List<Model> permeationModels = new ArrayList<>();
+               List<Model> permeationModels = new ArrayList<>();
                 for (DecWorld permeation : permeations) {
-                    if (debug >= 4) DecUtils.out("     DecWorld: permeation for " + name + ": " + permeation.getName());
                     permeationModels.add(permeation.getInfModel());
                 }
 /*
@@ -149,6 +156,7 @@ public class DecWorld {
                 unionModel = ModelFactory.createUnion(unionModel, baseModel);
 */
                 for (Model permeationModel : permeationModels) {
+                    if (permeationModel == null) continue;
                     permeationModel.listStatements().forEachRemaining(stmt -> {
                         if (!DecUtils.isTrivial(stmt.asTriple())) {
                             baseModel.add(stmt);
@@ -175,40 +183,34 @@ public class DecWorld {
     public Boolean isNotReady() { return !this.ready; }
 
     public boolean isModelValid() {
-        if (debug >= 1) DecUtils.out("   DecWorld: infModelValidate: " + name);
+        if (debug >= 2) DecUtils.out("isModelValid ", name, 8);
         
-        // Check if base graph exists and is valid
         if (baseGraph == null) {
-            if (debug >= 1) DecUtils.out("     Base graph is null for " + name);
+            if (debug >= 1) DecUtils.out("!!! Base graph is null for ", name, 8);
             return false;
         }
         
         try {
-            // Test if base graph is accessible
             baseGraph.size();
         } catch (Exception e) {
-            if (debug >= 1) DecUtils.out("     Base graph is invalid for " + name + ": " + e.getMessage());
+            if (debug >= 1) DecUtils.out("!!! Base graph is invalid for ", name, e.getMessage(), 8);
             return false;
         }
         
-        // Check all permeations
         for (DecWorld permeation : permeations) {
             if (permeation == null) {
-                if (debug >= 1) DecUtils.out("     Permeation is null for " + name);
+                if (debug >= 2) DecUtils.out("Permeation is null for ", name, 8);
                 return false;
             }
             
             try {
-                // Test if permeation's graph is accessible
-                if (debug >= 1) DecUtils.out("     Permeation " + permeation.getName() + " is valid for " + name);
+                if (debug >= 2) DecUtils.out("Permeation ", permeation.getName(), " is valid for ", name);
                 permeation.getBaseGraph().size();
             } catch (Exception e) {
-                if (debug >= 1) DecUtils.out("     Permeation " + permeation.getName() + " is invalid for " + name + ": " + e.getMessage());
+                if (debug >= 2) DecUtils.out("Permeation ", permeation.getName(), " is invalid for ", name, e.getMessage(), 8);
                 return false;
             }
-        }
-        
-        if (debug >= 1) DecUtils.out("     InfModel is valid for " + name);
+        }        
         return true;
     }
 
@@ -286,7 +288,7 @@ public class DecWorld {
             (enableInference ? " (inference enabled)" : " (inference disabled)") + ": " + 
             (ready ? " ready " : " not ready ") +
             (pointOfView ? " (point of view enabled)" : " (point of view disabled)");
-        ret += permeations.size() > 0 ? "\n      [permeations: " + permeations.stream().map(DecWorld::getName).collect(Collectors.joining(", ")) + "]" : " - no permeations";
+        ret += permeations.size() > 0 ? "\n      [permeations: " + showPermeations() + "]" : " - no permeations";
         return ret;
     }
 
@@ -295,6 +297,10 @@ public class DecWorld {
             s.getSubject().toString().contains(prefix) &&
             s.getObject().toString().contains(prefix)
         ).forEachRemaining(System.out::println);
+    }
+
+    public String showPermeations() {
+        return permeations.stream().map(DecWorld::getName).collect(Collectors.joining(", "));
     }
     
 }

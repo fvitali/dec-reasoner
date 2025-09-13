@@ -41,7 +41,7 @@ import org.apache.jena.sparql.core.Quad;
 public class DecReasoner implements Reasoner {
 
 
-	private static final int debug = 1;
+	private static int debug = 1;
 	private final Reasoner					baseReasoner;
 	private final DecDataset				decDataset;
 
@@ -59,6 +59,9 @@ public class DecReasoner implements Reasoner {
 		this.decDataset = decDataset;
 		this.baseReasoner = decDataset.getBaseReasoner();		
 		this.worlds = decDataset.getWorlds();
+		int debugLevel = DecUtils.getDebugLevel(2); // Position 2 for DecReasoner
+		// Set the debug level for this class
+		this.debug = debugLevel;
 	}
 
 	/**

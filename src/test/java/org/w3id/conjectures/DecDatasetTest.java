@@ -74,7 +74,7 @@ import org.apache.jena.query.ResultSetFactory;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class DecDatasetTest {
-	private static final int debug = 2;
+	private static int debug ;
 	private DecDataset dataset;
 	private PrintStream originalErr;
 	private static final String ANSI_RESET = "\u001B[0m";
@@ -118,8 +118,10 @@ public class DecDatasetTest {
 	@BeforeEach
 	
 	void setUp() {
+
 		if (debug >= 4) DecUtils.out("\nNew test");
-		dataset = new DecDataset(null, false, false, true, 60000, ReasonerRegistry.getOWLReasoner());
+		dataset = new DecDataset(null, false, false, true, 60000, ReasonerRegistry.getOWLReasoner(),"1");
+		debug = DecUtils.getDebugLevel(11); // Position 11 for DecDatasetTest
 		try {
 			originalErr = System.err;
 			System.setErr(new PrintStream(new FileOutputStream("test_error.log")));
@@ -139,7 +141,7 @@ public class DecDatasetTest {
 
 	
 	private void checkTrue(boolean condition, String message, String otherwise) {
-		if (debug >= 2) {
+		if (debug >= 1) {
 			if (!condition) {
 				DecUtils.out(ANSI_BOLD + ANSI_RED + "   ERROR: " + message + ANSI_RESET);
 			} else {
@@ -153,7 +155,7 @@ public class DecDatasetTest {
 
 	
 	private void checkFalse(boolean condition, String message, String otherwise) {
-		if (debug >= 2) {
+		if (debug >= 1) {
 			if (condition) {
 				DecUtils.out(ANSI_BOLD + ANSI_RED + "   ERROR: " + message + ANSI_RESET);
 		} else {
@@ -167,7 +169,7 @@ public class DecDatasetTest {
 
 	
 	private void checkEquals(Object expected, Object actual, String message, String otherwise) {
-		if (debug >= 2) {
+		if (debug >= 1) {
 			if (!expected.equals(actual)) {
 				DecUtils.out(ANSI_BOLD + ANSI_RED + "   ERROR: " + message + ANSI_RESET);
 			} else {
@@ -181,7 +183,7 @@ public class DecDatasetTest {
 
 	
 	private void checkNotNull(Object object, String message, String otherwise) {
-		if (debug >= 2) {
+		if (debug >= 1) {
 			if (object == null) {
 				DecUtils.out(ANSI_BOLD + ANSI_RED + "   ERROR: " + message + ANSI_RESET);
 			} else {
@@ -193,13 +195,94 @@ public class DecDatasetTest {
 		assertNotNull(object, message);
 	}
 
+	private static void showAll(ResultSetRewindable rs) {
+		DecUtils.out(4,
+			"====================== content of result set ==========================", 
+			rs, 
+			"=======================================================================", false
+		);
+	}
+
+
+	private void executeUpdate(String updateQuery) {
+		try {
+			UpdateRequest update = UpdateFactory.create(updateQuery);
+			UpdateProcessor processor = UpdateExecutionFactory.create(update, dataset);
+			processor.execute();
+		} catch (Throwable t) {
+			
+			throw new RuntimeException("Update failed: " + t.getMessage());
+		}
+	}
+
+	private ResultSetRewindable execSelect(String queryString){
+		Dataset ds = DatasetFactory.wrap(dataset);
+		try (QueryExecution qx = QueryExecutionFactory.create(QueryFactory.create(queryString), ds)) {
+			return ResultSetFactory.copyResults(qx.execSelect());
+		}
+	}
+
+	
+	private ResultSet executeQuery(String queryString) {
+		QueryExecution qexec = QueryExecutionFactory.create(QueryFactory.create(queryString), dataset);
+		ResultSet results = qexec.execSelect();
+		return results;
+	}
+
+	
+	private boolean matchesPattern(ResultSet results, Map<String, String> pattern) {
+		if (debug >= 3) DecUtils.out(pattern );
+		while (results.hasNext()) {
+			String[] triple = new String[4];
+			boolean matches = true;
+			boolean special = false;
+			QuerySolution soln = results.next();
+
+			String s = DecUtils.replacePrefixes(soln.get("s") != null ? soln.get("s").toString() : "");
+			String p = DecUtils.replacePrefixes(soln.get("p") != null ? soln.get("p").toString() : "");
+			String o = DecUtils.replacePrefixes(soln.get("o") != null ? soln.get("o").toString() : "");
+			String g = DecUtils.replacePrefixes(soln.get("g") != null ? soln.get("g").toString() : "");
+			
+			for (Map.Entry<String, String> entry : pattern.entrySet()) {
+				String key = entry.getKey();
+				String value = entry.getValue();
+				String nodeStr = soln.get(key) != null ? soln.get(key).toString() : "";
+				if (value.equals("*")) continue;
+				if (key.equals("g") && value.isEmpty() && nodeStr.isEmpty() ) {
+					if (debug >= 3) DecUtils.out("graph is default: " + s + " " + p + " " + o + " (" + g+")");
+					continue; 
+				} else if (!nodeStr.matches(value)) {
+					
+					if (debug >= 3 && key.equals("g") && !DecUtils.isTrivial(s, p, o)) {
+						DecUtils.out("does not match: " + s + " " + p + " " + o + " (" + g+") because " + nodeStr + "	is not " + value);
+					}
+					
+					matches = false;
+					break;
+				} else {
+					
+					if (debug >= 3 && key.equals("g") && !DecUtils.isTrivial(s, p, o)) 
+						DecUtils.out("matches: " + s + " " + p + " " + o + " (" + g+")");
+				}
+			}
+			
+			if (matches) {
+				if (debug >= 3) DecUtils.out("matches: " + s + " " + p + " " + o + " (" + g+")");
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+
 	@Order(1)
 	@Test
 	
 	
 	void test001_TDB2Dataset() {
 		if (debug >= 1) DecUtils.out("\n----------------------------\n 1 testTDB2Dataset\n----------------------------");
-		DatasetGraph dataset = new DecDataset("", true, true, true, 60000, ReasonerRegistry.getOWLReasoner());
+		DatasetGraph dataset = new DecDataset("", true, true, true, 60000, ReasonerRegistry.getOWLReasoner(),"1");
 		checkNotNull(dataset, "Test 1: TDB2 dataset should be created successfully", "TDB2 dataset created successfully as expected");
 	}
 
@@ -210,7 +293,7 @@ public class DecDatasetTest {
 	
 	void test002_InMemoryDataset() {
 		if (debug >= 1) DecUtils.out("\n----------------------------\n 2 testInMemoryDataset\n----------------------------");
-		DatasetGraph dataset = new DecDataset(null, false, false, true, 60000, ReasonerRegistry.getOWLReasoner());
+		DatasetGraph dataset = new DecDataset(null, false, false, true, 60000, ReasonerRegistry.getOWLReasoner(),"1");
 		checkNotNull(dataset, "Test 2: In-memory dataset should be created successfully", "In-memory dataset created successfully as expected");
 	}
 
@@ -232,7 +315,7 @@ public class DecDatasetTest {
 	
 	void test004_QueryTimeout() {
 		if (debug >= 1) DecUtils.out("\n----------------------------\n 4 testQueryTimeout\n----------------------------");
-		DecDataset dataset = new DecDataset(null, false, false, true, 30000, ReasonerRegistry.getOWLReasoner());
+		DecDataset dataset = new DecDataset(null, false, false, true, 30000, ReasonerRegistry.getOWLReasoner(),"1");
 		checkEquals(30000, dataset.getQueryTimeout(), "Test 4: Query timeout should be set to 30000", "Query timeout set correctly to 30000 as expected");
 	}
 
@@ -1403,8 +1486,11 @@ public class DecDatasetTest {
 			}
 		""";
 
-		// Check that Student is inferred to be subclass of Animal in epistemic graph
-		
+		ResultSetRewindable rs1 = execSelect(queryInferences);
+		showAll(rs1);
+
+
+		// Check that Student is inferred to be subclass of Animal in epistemic graph		
 		checkTrue(matchesPattern(executeQuery(queryInferences), Map.of(
 			"g", "",
 			"s", ".*/mario",
@@ -1494,85 +1580,6 @@ public class DecDatasetTest {
 
 	}
 
-	private static void showAll(ResultSetRewindable rs) {
-		DecUtils.out(4,
-			"====================== content of result set ==========================", 
-			rs, 
-			"=======================================================================", false
-		);
-	}
-
-
-	private void executeUpdate(String updateQuery) {
-		try {
-			UpdateRequest update = UpdateFactory.create(updateQuery);
-			UpdateProcessor processor = UpdateExecutionFactory.create(update, dataset);
-			processor.execute();
-		} catch (Throwable t) {
-			
-			throw new RuntimeException("Update failed: " + t.getMessage());
-		}
-	}
-
-	private ResultSetRewindable execSelect(String queryString){
-		Dataset ds = DatasetFactory.wrap(dataset);
-		try (QueryExecution qx = QueryExecutionFactory.create(QueryFactory.create(queryString), ds)) {
-			return ResultSetFactory.copyResults(qx.execSelect());
-		}
-	}
-
-	
-	private ResultSet executeQuery(String queryString) {
-		QueryExecution qexec = QueryExecutionFactory.create(QueryFactory.create(queryString), dataset);
-		ResultSet results = qexec.execSelect();
-		return results;
-	}
-
-	
-	private boolean matchesPattern(ResultSet results, Map<String, String> pattern) {
-		if (debug >= 3) DecUtils.out(pattern );
-		while (results.hasNext()) {
-			String[] triple = new String[4];
-			boolean matches = true;
-			boolean special = false;
-			QuerySolution soln = results.next();
-
-			String s = DecUtils.replacePrefixes(soln.get("s") != null ? soln.get("s").toString() : "");
-			String p = DecUtils.replacePrefixes(soln.get("p") != null ? soln.get("p").toString() : "");
-			String o = DecUtils.replacePrefixes(soln.get("o") != null ? soln.get("o").toString() : "");
-			String g = DecUtils.replacePrefixes(soln.get("g") != null ? soln.get("g").toString() : "");
-			
-			for (Map.Entry<String, String> entry : pattern.entrySet()) {
-				String key = entry.getKey();
-				String value = entry.getValue();
-				String nodeStr = soln.get(key) != null ? soln.get(key).toString() : "";
-				if (value.equals("*")) continue;
-				if (key.equals("g") && value.isEmpty() && nodeStr.isEmpty() ) {
-					if (debug >= 3) DecUtils.out("graph is default: " + s + " " + p + " " + o + " (" + g+")");
-					continue; 
-				} else if (!nodeStr.matches(value)) {
-					
-					if (debug >= 3 && key.equals("g") && !DecUtils.isTrivial(s, p, o)) {
-						DecUtils.out("does not match: " + s + " " + p + " " + o + " (" + g+") because " + nodeStr + "	is not " + value);
-					}
-					
-					matches = false;
-					break;
-				} else {
-					
-					if (debug >= 3 && key.equals("g") && !DecUtils.isTrivial(s, p, o)) 
-						DecUtils.out("matches: " + s + " " + p + " " + o + " (" + g+")");
-				}
-			}
-			
-			if (matches) {
-				if (debug >= 3) DecUtils.out("matches: " + s + " " + p + " " + o + " (" + g+")");
-				return true;
-			}
-		}
-		
-		return false;
-	}
 
 	@Test
 	@Order(33)

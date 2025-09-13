@@ -29,9 +29,11 @@ import org.apache.jena.reasoner.Reasoner;
 import org.apache.jena.reasoner.ReasonerRegistry;
 import org.apache.jena.sparql.core.DatasetGraph;
 
+import java.util.Arrays;
+
 @SuppressWarnings("unused")
 public class DecDatasetAssembler extends AssemblerBase {
-    private static final int debug = 0;
+    private static int debug = 0;
 
     static {
         init();  // Ensures `init()` is always called when the class is loaded
@@ -55,6 +57,7 @@ public class DecDatasetAssembler extends AssemblerBase {
             boolean allowUpdate = getBooleanValue(root, "allowUpdate", true);
             int queryTimeout = getIntValue(root, "queryTimeout", 60000);
             String reasonerURI = getStringValue(root, "baseReasoner", null);
+            String levels = getStringValue(root, "loggingLevels", "1");
 
             // Load the reasoner
             Reasoner reasoner = null;
@@ -75,8 +78,9 @@ public class DecDatasetAssembler extends AssemblerBase {
             Reasoner baseReasoner = reasoner;
             if (debug >= 1) DecUtils.out("DecDatasetAssembler: baseReasoner: " + baseReasoner);
 
-            DatasetGraph datasetGraph = new DecDataset(location, useTDB2, unionDefaultGraph, allowUpdate, queryTimeout, baseReasoner);
-            
+            DatasetGraph datasetGraph = new DecDataset(location, useTDB2, unionDefaultGraph, allowUpdate, queryTimeout, baseReasoner, levels);            
+            debug = DecUtils.getDebugLevel(0);
+
             return DatasetFactory.wrap(datasetGraph);
         } catch (Exception e) {
             logError("DecDatasetAssembler", "open", e);

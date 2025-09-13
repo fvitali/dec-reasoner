@@ -43,4 +43,17 @@ ja:Dataset ja:assembler "org.w3id.conjectures.DecDatasetAssembler" .
     dec:unionDefaultGraph true ;
     dec:allowUpdate true ;
     dec:queryTimeout 60000 ;
-    dec:baseReasoner "http://jena.hpl.hp.com/2003/OWLFBRuleReasoner" .
+    dec:baseReasoner "http://jena.hpl.hp.com/2003/OWLFBRuleReasoner" ;
+    dec:loggingLevels "1 2 1 1 1 1 1 1 1 1 1" .
+# Logging levels for each class
+# 0: DecDatasetAssembler
+# 1: DecDataset
+# 2: DecReasoner
+# 3: DecWorld
+# 4: DecUtil
+# 5: DecStatementHandler
+# 6: DefaultGraphHandler
+# 7: NamedGraphHandler
+# 8: RDFStarHandler
+# 9: ReificationHandler
+# 10: DecDatasetTest

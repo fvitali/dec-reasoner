@@ -13,7 +13,7 @@ import org.apache.jena.reasoner.*;
 
 public class DecStatementHandler {
   
-    private static final int            debug = 1;
+    private final int            debug ;
 	private final DecDataset			dataset;
 
 	private final Map<Node, DecWorld>	worlds;
@@ -73,6 +73,7 @@ public class DecStatementHandler {
         this.DecPointOfViewReversePredicates = new ArrayList<>() ;
         closedForSubjects = new LinkedHashSet<>(); 
         closedForObjects = new LinkedHashSet<>(); 
+        debug = DecUtils.getDebugLevel(4); // Position 4 for DecStatementHandler
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {
@@ -141,15 +142,16 @@ public class DecStatementHandler {
 	}
 
 	private boolean decTypeAttribution(Node s, Node p, Node o) {
+		if (debug >= 2) out("decTypeAttribution", s, p, o, 8);
 		// Case 1: :g1 rdf:type dec:epistemicWorld
-		if (debug >= 3) out("Expecting one of ", DecUtils.DECtypes, RDF_TYPE_URI, 8, false); 
+		if (debug >= 4) out("Expecting one of ", DecUtils.DECtypes, RDF_TYPE_URI, 8); 
 
 		if(!(
 			p.equals(NodeFactory.createURI(RDF_TYPE_URI)) && 
 			DecUtils.DECtypes.containsKey(o.getURI())
 		)) return false;
 
-		if (debug >= 3) out("decTypeAttribution approved for ", s, p, o, 8); 
+		if (debug >= 3) out("decTypeAttribution approved", 8); 
 		String decType = DecUtils.DECtypes.get(o.getURI());
 		DecWorld world = worlds.computeIfAbsent(
 			s, key -> new DecWorld(s.getURI(), "named", dataset.getDatasetGraph().getGraph(s), dataset)
@@ -160,6 +162,8 @@ public class DecStatementHandler {
 	}
 
 	private boolean decPredicateAttribution(Node s, Node p, Node o) {
+		if (debug >= 2) out("decPredicateAttribution", s, p, o, 8);
+
 		// Case 2: ex:predicate rdf:type dec:epistemicPredicate
 
 		if (!(
@@ -176,13 +180,13 @@ public class DecStatementHandler {
 
 	private boolean decReversePredicateAttribution(Node s, Node p, Node o) {
 			// Case 4: ex:predicate rdf:type dec:epistemicReversePredicate
-
+		if (debug >= 2) out("decReversePredicateAttribution", s, p, o, 8);
 		if (!(
 			p.equals(NodeFactory.createURI(RDF_TYPE_URI)) && 
 			DecUtils.DECReversePredicateTypes.containsKey(o.getURI())
 		)) return false;
 
-		if (debug >= 2) out("decReversePredicateAttribution approved for ", s, p, o, 8); 
+		if (debug >= 2) out("decReversePredicateAttribution approved", 8); 
 		String decType = DecUtils.DECReversePredicateTypes.get(o.getURI());
 		DecReversePredicates.put(s, decType);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
@@ -192,13 +196,14 @@ public class DecStatementHandler {
 	private boolean decRangeAttribution(Node s, Node p, Node o) {
 		// Case 5: :knows rdfs:range dec:epistemicWorld
 
+		if (debug >= 2) out("decRangeAttribution", s, p, o, 8);
 		if (! (
 			p.equals(NodeFactory.createURI(RDFS_RANGE_URI)) || 
 			p.equals(NodeFactory.createURI(OWL_RANGE_URI)) 
 			&& DecUtils.DECtypes.containsKey(o.getURI()))
 		)	return false;
 		
-		if (debug >= 2) out("decRangeAttribution approved for ", s, p, o, 8); 
+		if (debug >= 2) out("decRangeAttribution approved", 8); 
 		String decType = DecUtils.DECtypes.get(o.getURI());
 		DecPredicates.put(s, decType);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
@@ -208,12 +213,13 @@ public class DecStatementHandler {
 	private boolean pointOfViewAttribution(Node s, Node p, Node o) {
 		// Case 6 :g1 rdf:type dec:pointOfViewWorld
 
+		if (debug >= 2) out("pointOfViewAttribution", s, p, o, 8);
 		if (!(
 			p.equals(NodeFactory.createURI(RDF_TYPE_URI)) && 
 			o.equals(NodeFactory.createURI(POINT_OF_VIEW))
 		))  return false ;
 
-		if (debug >= 2) out("pointOfViewAttribution approved for ", s, p, o, 8); 
+		if (debug >= 2) out("pointOfViewAttribution approved", 8); 
 
 		DecWorld world = worlds.computeIfAbsent(
 			s, key -> new DecWorld(s.getURI(), "named", dataset.getDatasetGraph().getGraph(s), dataset)
@@ -227,12 +233,13 @@ public class DecStatementHandler {
 
 	private boolean pointOfViewPredicateAttribution(Node s, Node p, Node o) {
 		// Case 7: ex:predicate rdf:type dec:pointOfViewPredicate
+		if (debug >= 2) out("pointOfViewPredicateAttribution", s, p, o, 8);
 		if (!(
 			p.equals(NodeFactory.createURI(RDFS_RANGE_URI)) && 
 			o.equals(NodeFactory.createURI(POINT_OF_VIEW))
 		)) return false;
 
-		if (debug >= 2) out("pointOfViewPredicateAttribution approved for ", s, p, o, 8); 
+		if (debug >= 2) out("pointOfViewPredicateAttribution approved", 8); 
 		DecPointOfViewPredicates.add(s);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
 		return true;
@@ -240,12 +247,13 @@ public class DecStatementHandler {
 
 	private boolean pointOfViewReversePredicateAttribution(Node s, Node p, Node o) {
 		// Case 8: ex:predicate rdf:type dec:pointOfViewReversePredicate
+		if (debug >= 2) out("pointOfViewReversePredicateAttribution", s, p, o, 8);
 		if (!(
 			p.equals(NodeFactory.createURI(RDFS_RANGE_URI)) && 
 			o.equals(NodeFactory.createURI(POINT_OF_VIEW_REVERSE_PREDICATE))
 		)) return false;
 
-		if (debug >= 2) out("pointOfViewReversePredicateAttribution approved for ", s, p, o, 8); 
+		if (debug >= 2) out("pointOfViewReversePredicateAttribution approved", 8); 
 		DecPointOfViewReversePredicates.add(s);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
 		return true;
@@ -254,39 +262,43 @@ public class DecStatementHandler {
 	private boolean pointOfViewRangeAttribution(Node s, Node p, Node o) {
 		// Case 9: ex:predicate rdfs:range dec:pointOfView
 
+		if (debug >= 2) out("pointOfViewRangeAttribution", s, p, o, 8);
 		if (! (
 			p.equals(NodeFactory.createURI(RDFS_RANGE_URI)) && 
 			o.equals(NodeFactory.createURI(POINT_OF_VIEW))
 		)) return false;
 
-		if (debug >= 2) out("pointOfViewRangeAttribution approved for ", s, p, o, 8); 
+		if (debug >= 2) out("pointOfViewRangeAttribution approved", 8); 
 		DecPointOfViewPredicates.add(s);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
 		return true;
 	}
 
 	private boolean checkInconsistenciesAttribution(Node s, Node p, Node o) {
+		if (debug >= 2) out("checkInconsistenciesAttribution for", s, p, o, 8);
 		if (! (
 			p.equals(NodeFactory.createURI(CHECK_INCONSISTENCIES))
 		)) return false;
 
 		checkInconsistencies = Boolean.parseBoolean(o.getLiteralLexicalForm());
+		if (debug >= 2) out("checkInconsistencies: " + checkInconsistencies, 8); 
 		return true; 
 	}
 
 	private boolean closedForAttribution(Node s, Node p, Node o) {
+		if (debug >= 2) out("closedForAttribution for", s, p, o, 8);
 		if (!p.equals(NodeFactory.createURI(CLOSED_FOR))) return false ;
 
 		if (s.equals(NodeFactory.createURI(RDF_SUBJECT_URI))) {
 			// Case 10: rdf:Subject dec:closedFor :createdBy
 				checkClosedFor = true;
 				closedForSubjects.add(o);
-				if (debug >= 3) out("closedFor Subject approved for ", s, p, o, 8); 
+				if (debug >= 3) out("closedFor Subject approved", 8); 
 			} else if (s.equals(NodeFactory.createURI(RDF_OBJECT_URI))) {
 			// Case 11: rdf:Object dec:closedFor :create
 				checkClosedFor = true;
 				closedForObjects.add(o); 
-				if (debug >= 3) out("closedFor Object approved for ", s, p, o, 8); 
+				if (debug >= 3) out("closedFor Object approved", 8); 
 			} else {
 			return false;
 		}
@@ -440,7 +452,6 @@ public class DecStatementHandler {
 			u.setEnableInference(inferenceSetting);
 
 			});
-		if (debug >= 1) out("completato", 4);	
 	}
 
 
