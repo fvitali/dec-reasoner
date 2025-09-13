@@ -73,6 +73,50 @@
           </excludes>
         </configuration>
       </plugin>
+
+
+
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-antrun-plugin</artifactId>
+	<version>3.1.0</version>
+	<executions>
+		<execution>
+			<id>update-build-info</id>
+			<phase>generate-resources</phase>
+			<configuration>
+				<target>
+					<!-- 1) dirs -->
+					<mkdir dir="${project.basedir}/.build"/>
+					<mkdir dir="${project.build.outputDirectory}"/>
+
+					<!-- 2) timestamp ISO -->
+					<tstamp>
+						<format property="now.iso" pattern="yyyy-MM-dd'T'HH:mm:ssXXX"/>
+					</tstamp>
+
+					<!-- 3) aggiorna/crea il file persistente -->
+					<propertyfile file="${project.basedir}/.build/build-info.properties"
+					              comment="Auto-generated; do not edit">
+						<!-- contatore (parte da 0 alla prima build) -->
+						<entry key="compile.counter" type="int" default="0" operation="+" value="1"/>
+						<!-- orario build come stringa -->
+						<entry key="build.time" value="${now.iso}"/>
+					</propertyfile>
+
+					<!-- 4) copia nel classpath della JAR -->
+					<copy file="${project.basedir}/.build/build-info.properties"
+					      todir="${project.build.outputDirectory}"/>
+				</target>
+			</configuration>
+			<goals>
+				<goal>run</goal>
+			</goals>
+		</execution>
+	</executions>
+</plugin>
+
+
     </plugins>
   </build>
 </project>

@@ -19,6 +19,10 @@
 import org.w3id.conjectures.handler.*;
 
 import java.util.*; 
+import java.io.*;
+import java.time.*;
+import java.time.format.*;
+
 import java.util.stream.Stream;
 import java.util.function.Supplier;
 import org.apache.jena.graph.*;
@@ -37,8 +41,19 @@ import java.util.Spliterators;
 import java.util.Spliterator;
 import org.apache.jena.reasoner.ValidityReport;
 
+
 @SuppressWarnings("unused")
 public class DecDataset implements DatasetGraph {
+	private static final String BUILD_INFO_RESOURCE = "build-info.properties";
+	private static final ZoneId BUILD_ZONE = ZoneId.of("Europe/Rome");
+	private static final DateTimeFormatter BUILD_FMT =
+		DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm:ss z", Locale.ENGLISH);
+	
+	private static String baseversion = "1.0.";
+	private int buildcounter = -1;
+	public String buildtime = null;	// es: "13 Sep 2025 18:42:10 CEST"
+	public String version = null;
+
 	private static int debug = 1;
 	private static final String DEFAULT_LOCATION = "/tmp/dec-dataset";
 
@@ -58,8 +73,8 @@ public class DecDataset implements DatasetGraph {
 	private final int queryTimeout;	
 
 
-	final Map<Node, DecWorld>	worlds 			= new HashMap<>();
-	final Map<Quad, String> 		rdfStarTriples		= new HashMap<>();
+	final Map<Node, DecWorld>	worlds 				= new HashMap<>();
+	final Map<Quad, String> 	rdfStarTriples		= new HashMap<>();
 
 	private boolean needsPermeating = false;
 	public final Object permeatingLock = new Object();
@@ -112,6 +127,16 @@ public class DecDataset implements DatasetGraph {
 		this.dsh = new DecStatementHandler(this);
 
 		this.reasoner = new DecReasoner(this);
+		logBuildInfo();
+		version = baseversion + buildcounter;
+
+		if (debug >= 1) DecUtils.out(
+			"=================================================================",
+			"",
+			"DecDataset version " + version + " built at " + buildtime,
+			"",
+			"=================================================================", 
+			false);
 
 	}
 	
@@ -220,7 +245,13 @@ public class DecDataset implements DatasetGraph {
 				reh.restoreReifications();
 				rsh.restoreRdfStarTriples();
 				dgh.restoreDefaultGraph();
-//				checkConsistency();
+				if (debug >= 1) {
+					Node b = NodeFactory.createBlankNode() ;
+					Triple buildTimeTriple = Triple.create(b, NodeFactory.createURI(DecUtils.decPrefix + "buildTime"), NodeFactory.createLiteral(buildtime));
+					Triple buildVersionTriple = Triple.create(b, NodeFactory.createURI(DecUtils.decPrefix + "buildVersion"), NodeFactory.createLiteral(version));
+					datasetGraph.getDefaultGraph().add(buildTimeTriple);
+					datasetGraph.getDefaultGraph().add(buildVersionTriple);
+				}
 			} finally {
 				isPermeating = false;
 			}
@@ -1285,5 +1316,42 @@ public class DecDataset implements DatasetGraph {
 		
 		return result;
 	}
+
+	private void logBuildInfo() {
+		Properties p = new Properties();
+		try (InputStream in = Thread.currentThread()
+			.getContextClassLoader()
+			.getResourceAsStream(BUILD_INFO_RESOURCE)) {
+	
+			if (in == null) {
+				return;
+			}
+			p.load(in);
+	
+			String c = p.getProperty("compile.counter");
+			String t = p.getProperty("build.time");
+	
+			if (c != null) {
+				try {
+					this.buildcounter = Integer.parseInt(c.trim());
+				} catch (NumberFormatException e) {
+					// lascia il default -1
+				}
+			}
+			if (t != null) {
+				try {
+					OffsetDateTime odt = OffsetDateTime.parse(t.trim());
+					ZonedDateTime zdt = odt.atZoneSameInstant(BUILD_ZONE);
+					this.buildtime = BUILD_FMT.format(zdt);
+				} catch (Exception ignore) {
+					// se parsing fallisce, lascia l'ISO com'è
+					this.buildtime = t;
+				}
+			}
+			} catch (Exception e) {
+			// lascia i default
+		}
+	}
+		
 
 }

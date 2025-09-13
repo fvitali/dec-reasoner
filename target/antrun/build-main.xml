@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <mkdir dir="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/.build" />
+    <mkdir dir="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/classes" />
+    <tstamp>
+      <format property="now.iso" pattern="yyyy-MM-dd'T'HH:mm:ssXXX" />
+    </tstamp>
+    <propertyfile file="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/.build/build-info.properties" comment="Auto-generated; do not edit">
+      <entry default="0" type="int" operation="+" value="1" key="compile.counter" />
+      <entry value="${now.iso}" key="build.time" />
+    </propertyfile>
+    <copy file="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/.build/build-info.properties" todir="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/classes" />
+  </target>
+</project>
