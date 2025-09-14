@@ -23,7 +23,8 @@ public class DefaultGraphHandler {
 	public DefaultGraphHandler(DecDataset dataset) {
 		this.dataset = dataset;
 		this.worlds = dataset.getWorlds();
-		debug = DecUtils.getDebugLevel(5); // Position 5 for DefaultGraphHandler
+		debug = DecUtils.getDebugLevel(6); // Position 6 for DefaultGraphHandler
+		DecUtils.out("DefaultGraphHandler: debug level (6): " + debug);
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {

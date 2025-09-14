@@ -23,6 +23,8 @@ public class ReificationHandler {
 		this.worlds = dataset.getWorlds();
         this.reifications = new HashMap<>() ;
         this.reificationMapping = new HashMap<>();
+        debug = DecUtils.getDebugLevel(9); // Position 9 for ReificationHandler
+        DecUtils.out("ReificationHandler: debug level (9): " + debug);
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {

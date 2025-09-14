@@ -59,9 +59,8 @@ public class DecReasoner implements Reasoner {
 		this.decDataset = decDataset;
 		this.baseReasoner = decDataset.getBaseReasoner();		
 		this.worlds = decDataset.getWorlds();
-		int debugLevel = DecUtils.getDebugLevel(2); // Position 2 for DecReasoner
-		// Set the debug level for this class
-		this.debug = debugLevel;
+		this.debug = DecUtils.getDebugLevel(2); // Position 2 for DecReasoner
+		DecUtils.out("DecReasoner: debug level (2): " + debug);
 	}
 
 	/**

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.w3id.conjectures.DecDatasetTest
 -------------------------------------------------------------------------------
-Tests run: 32, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 1.499 s -- in org.w3id.conjectures.DecDatasetTest
+Tests run: 32, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 1.377 s -- in org.w3id.conjectures.DecDatasetTest

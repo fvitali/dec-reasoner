@@ -20,7 +20,8 @@ public class RDFStarHandler {
 	public RDFStarHandler(DecDataset dataset) {
 		this.dataset = dataset;
 		this.worlds = dataset.getWorlds();
-		debug = DecUtils.getDebugLevel(7); // Position 7 for RDFStarHandler
+		debug = DecUtils.getDebugLevel(8); // Position 8 for RDFStarHandler
+		DecUtils.out("RDFStarHandler: debug level (8): " + debug);
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {

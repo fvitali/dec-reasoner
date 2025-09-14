@@ -268,7 +268,6 @@ public class DecUtils {
 		int count = 0;
 		while (it.hasNext()) {
 			Triple t = it.next();
-			if (debug >= 1) DecUtils.out("  triple: " + t.getSubject() + " " + t.getPredicate() + " " + t.getObject());
 			count++;
 		}
 		return count;
@@ -713,6 +712,9 @@ public class DecUtils {
 				}
 			}
 		}
+		debug = loggingLevels[4]; // The first level is the DecUtils level
+		DecUtils.out("DecUtils: debug level (4): " + debug);
+
 	}
 	public static int getDebugLevel(int n) {
 		if (n >= 0 && n < loggingLevels.length) {

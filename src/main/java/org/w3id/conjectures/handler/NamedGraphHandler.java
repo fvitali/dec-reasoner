@@ -17,7 +17,8 @@ public class NamedGraphHandler {
 	public NamedGraphHandler(DecDataset dataset) {
 		this.dataset = dataset;
 		this.worlds = dataset.getWorlds();
-		debug = DecUtils.getDebugLevel(6); // Position 6 for NamedGraphHandler
+		debug = DecUtils.getDebugLevel(7); // Position 7 for NamedGraphHandler
+		DecUtils.out("NamedGraphHandler: debug level (7): " + debug);
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {

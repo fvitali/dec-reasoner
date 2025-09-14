@@ -73,7 +73,8 @@ public class DecStatementHandler {
         this.DecPointOfViewReversePredicates = new ArrayList<>() ;
         closedForSubjects = new LinkedHashSet<>(); 
         closedForObjects = new LinkedHashSet<>(); 
-        debug = DecUtils.getDebugLevel(4); // Position 4 for DecStatementHandler
+        debug = DecUtils.getDebugLevel(5); // Position 5 for DecStatementHandler
+        if (debug>= 2) DecUtils.out("DecStatementHandler: debug level (5): " + debug);
 	}
 
     public boolean isRelevant(Node g, Node s, Node p, Node o) {
@@ -104,7 +105,7 @@ public class DecStatementHandler {
     }
 
 	public void assignDecTypes() {
-		if (debug >= 1) out("assignDecTypes",4);
+		if (debug >= 2) out("assignDecTypes",5);
 
 		reality = worlds.get(NodeFactory.createURI(realityWorldS));
 		decWorld = worlds.get(NodeFactory.createURI(decStatementWorldS));
@@ -171,7 +172,7 @@ public class DecStatementHandler {
 			DecUtils.DECpredicateTypes.containsKey(o.getURI())
 		)) return false;
 
-		if (debug >= 2) out("decPredicateAttribution approved for ", s, p, o, 8); 
+		if (debug >= 3) out("decPredicateAttribution approved for ", s, p, o, 8); 
 		String decType = DecUtils.DECpredicateTypes.get(o.getURI());
 		DecPredicates.put(s, decType);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
@@ -186,7 +187,7 @@ public class DecStatementHandler {
 			DecUtils.DECReversePredicateTypes.containsKey(o.getURI())
 		)) return false;
 
-		if (debug >= 2) out("decReversePredicateAttribution approved", 8); 
+		if (debug >= 3) out("decReversePredicateAttribution approved", 8); 
 		String decType = DecUtils.DECReversePredicateTypes.get(o.getURI());
 		DecReversePredicates.put(s, decType);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
@@ -203,7 +204,7 @@ public class DecStatementHandler {
 			&& DecUtils.DECtypes.containsKey(o.getURI()))
 		)	return false;
 		
-		if (debug >= 2) out("decRangeAttribution approved", 8); 
+		if (debug >= 3) out("decRangeAttribution approved", 8); 
 		String decType = DecUtils.DECtypes.get(o.getURI());
 		DecPredicates.put(s, decType);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
@@ -219,7 +220,7 @@ public class DecStatementHandler {
 			o.equals(NodeFactory.createURI(POINT_OF_VIEW))
 		))  return false ;
 
-		if (debug >= 2) out("pointOfViewAttribution approved", 8); 
+		if (debug >= 3) out("pointOfViewAttribution approved", 8); 
 
 		DecWorld world = worlds.computeIfAbsent(
 			s, key -> new DecWorld(s.getURI(), "named", dataset.getDatasetGraph().getGraph(s), dataset)
@@ -239,7 +240,7 @@ public class DecStatementHandler {
 			o.equals(NodeFactory.createURI(POINT_OF_VIEW))
 		)) return false;
 
-		if (debug >= 2) out("pointOfViewPredicateAttribution approved", 8); 
+		if (debug >= 3) out("pointOfViewPredicateAttribution approved", 8); 
 		DecPointOfViewPredicates.add(s);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
 		return true;
@@ -253,7 +254,7 @@ public class DecStatementHandler {
 			o.equals(NodeFactory.createURI(POINT_OF_VIEW_REVERSE_PREDICATE))
 		)) return false;
 
-		if (debug >= 2) out("pointOfViewReversePredicateAttribution approved", 8); 
+		if (debug >= 3) out("pointOfViewReversePredicateAttribution approved", 8); 
 		DecPointOfViewReversePredicates.add(s);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
 		return true;
@@ -268,7 +269,7 @@ public class DecStatementHandler {
 			o.equals(NodeFactory.createURI(POINT_OF_VIEW))
 		)) return false;
 
-		if (debug >= 2) out("pointOfViewRangeAttribution approved", 8); 
+		if (debug >= 3) out("pointOfViewRangeAttribution approved", 8); 
 		DecPointOfViewPredicates.add(s);
 		decWorld.getBaseGraph().add(Triple.create(s, p, o));
 		return true;
@@ -281,7 +282,7 @@ public class DecStatementHandler {
 		)) return false;
 
 		checkInconsistencies = Boolean.parseBoolean(o.getLiteralLexicalForm());
-		if (debug >= 2) out("checkInconsistencies: " + checkInconsistencies, 8); 
+		if (debug >= 3) out("checkInconsistencies: " + checkInconsistencies, 8); 
 		return true; 
 	}
 

@@ -64,9 +64,9 @@ public class DecWorld {
 
     // Constructor for graph-based world
     public DecWorld(String name, String graphType, Graph baseGraph, DecDataset decDataset) {
-        int debugLevel = DecUtils.getDebugLevel(3); // Position 3 for DecWorld
-        // Set the debug level for this class
-        this.debug = debugLevel;
+        this.debug = DecUtils.getDebugLevel(3); // Position 3 for DecWorld
+        if (debug>= 2) DecUtils.out("DecWorld: debug level (3): " + debug);
+
         if (debug >= 2) DecUtils.out("Creating graph-based world: " + name + " of type " + graphType);
         this.world = this;
         this.name = name;

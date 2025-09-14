@@ -121,7 +121,7 @@ public class DecDatasetTest {
 
 		if (debug >= 4) DecUtils.out("\nNew test");
 		dataset = new DecDataset(null, false, false, true, 60000, ReasonerRegistry.getOWLReasoner(),"1");
-		debug = DecUtils.getDebugLevel(11); // Position 11 for DecDatasetTest
+		debug = DecUtils.getDebugLevel(10); // Position 10 for DecDatasetTest
 		try {
 			originalErr = System.err;
 			System.setErr(new PrintStream(new FileOutputStream("test_error.log")));

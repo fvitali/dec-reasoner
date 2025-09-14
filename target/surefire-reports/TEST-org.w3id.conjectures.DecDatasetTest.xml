@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.w3id.conjectures.DecDatasetTest" time="1.499" tests="32" errors="0" skipped="1" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.w3id.conjectures.DecDatasetTest" time="1.377" tests="32" errors="0" skipped="1" failures="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IT"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/24.0.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire/surefirebooter-20250913190015889_3.jar /Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire 2025-09-13T19-00-15_862-jvmRun1 surefire-20250913190015889_1tmp surefire_0-20250913190015889_2tmp"/>
+    <property name="sun.java.command" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire/surefirebooter-20250914093245725_3.jar /Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire 2025-09-14T09-32-45_694-jvmRun1 surefire-20250914093245725_1tmp surefire_0-20250914093245725_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/test-classes:/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/classes:/Users/fabio/.m2/repository/org/apache/jena/jena-core/4.8.0/jena-core-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-base/4.8.0/jena-base-4.8.0.jar:/Users/fabio/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shaded-guava/4.8.0/jena-shaded-guava-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-csv/1.10.0/commons-csv-1.10.0.jar:/Users/fabio/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:/Users/fabio/.m2/repository/commons-codec/commons-codec/1.15/commons-codec-1.15.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-compress/1.23.0/commons-compress-1.23.0.jar:/Users/fabio/.m2/repository/com/github/andrewoma/dexx/collection/0.7/collection-0.7.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-iri/4.8.0/jena-iri-4.8.0.jar:/Users/fabio/.m2/repository/commons-cli/commons-cli/1.5.0/commons-cli-1.5.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-arq/4.8.0/jena-arq-4.8.0.jar:/Users/fabio/.m2/repository/com/github/jsonld-java/jsonld-java/0.13.4/jsonld-java-0.13.4.jar:/Users/fabio/.m2/repository/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpclient-cache/4.5.14/httpclient-cache-4.5.14.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpclient/4.5.14/httpclient-4.5.14.jar:/Users/fabio/.m2/repository/org/apache/httpcomponents/httpcore/4.4.16/httpcore-4.4.16.jar:/Users/fabio/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.36/jcl-over-slf4j-1.7.36.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.14.2/jackson-core-2.14.2.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.14.2/jackson-databind-2.14.2.jar:/Users/fabio/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.14.2/jackson-annotations-2.14.2.jar:/Users/fabio/.m2/repository/com/apicatalog/titanium-json-ld/1.3.2/titanium-json-ld-1.3.2.jar:/Users/fabio/.m2/repository/org/glassfish/jakarta.json/2.0.1/jakarta.json-2.0.1.jar:/Users/fabio/.m2/repository/com/google/protobuf/protobuf-java/3.22.2/protobuf-java-3.22.2.jar:/Users/fabio/.m2/repository/org/apache/thrift/libthrift/0.18.1/libthrift-0.18.1.jar:/Users/fabio/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-main/4.8.0/jena-fuseki-main-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-core/4.8.0/jena-fuseki-core-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-rdfpatch/4.8.0/jena-rdfpatch-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shacl/4.8.0/jena-shacl-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-shex/4.8.0/jena-shex-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-tdb/4.8.0/jena-tdb-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-rdfconnection/4.8.0/jena-rdfconnection-4.8.0.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-servlet/10.0.14/jetty-servlet-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-security/10.0.14/jetty-security-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-server/10.0.14/jetty-server-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/toolchain/jetty-servlet-api/4.0.6/jetty-servlet-api-4.0.6.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-servlets/10.0.14/jetty-servlets-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-http/10.0.14/jetty-http-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-io/10.0.14/jetty-io-10.0.14.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-core/1.10.5/micrometer-core-1.10.5.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-commons/1.10.5/micrometer-commons-1.10.5.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-observation/1.10.5/micrometer-observation-1.10.5.jar:/Users/fabio/.m2/repository/org/hdrhistogram/HdrHistogram/2.1.12/HdrHistogram-2.1.12.jar:/Users/fabio/.m2/repository/org/latencyutils/LatencyUtils/2.0.3/LatencyUtils-2.0.3.jar:/Users/fabio/.m2/repository/io/micrometer/micrometer-registry-prometheus/1.10.5/micrometer-registry-prometheus-1.10.5.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_common/0.16.0/simpleclient_common-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient/0.16.0/simpleclient-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_otel/0.16.0/simpleclient_tracer_otel-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_common/0.16.0/simpleclient_tracer_common-0.16.0.jar:/Users/fabio/.m2/repository/io/prometheus/simpleclient_tracer_otel_agent/0.16.0/simpleclient_tracer_otel_agent-0.16.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-fuseki-access/4.8.0/jena-fuseki-access-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-cmds/4.8.0/jena-cmds-4.8.0.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-xml/10.0.14/jetty-xml-10.0.14.jar:/Users/fabio/.m2/repository/org/eclipse/jetty/jetty-util/10.0.14/jetty-util-10.0.14.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-tdb2/4.8.0/jena-tdb2-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-storage/4.8.0/jena-dboe-storage-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-trans-data/4.8.0/jena-dboe-trans-data-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-transaction/4.8.0/jena-dboe-transaction-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-base/4.8.0/jena-dboe-base-4.8.0.jar:/Users/fabio/.m2/repository/org/apache/jena/jena-dboe-index/4.8.0/jena-dboe-index-4.8.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter/5.10.0/junit-jupiter-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/fabio/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/fabio/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/fabio/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/fabio/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:"/>
@@ -30,7 +30,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire/surefirebooter-20250913190015889_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/Shared/WebServer/Documents/GitHub/DEC/dec-graphs/target/surefire/surefirebooter-20250914093245725_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="24.0.1"/>
@@ -59,11 +59,19 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="test001_TDB2Dataset" classname="org.w3id.conjectures.DecDatasetTest" time="0.201">
-    <system-out><![CDATA[
+  <testcase name="test001_TDB2Dataset" classname="org.w3id.conjectures.DecDatasetTest" time="0.254">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -71,10 +79,18 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 ----------------------------
  1 testTDB2Dataset
 ----------------------------   
+DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
 
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -85,11 +101,19 @@ SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="test002_InMemoryDataset" classname="org.w3id.conjectures.DecDatasetTest" time="0.002">
-    <system-out><![CDATA[
+  <testcase name="test002_InMemoryDataset" classname="org.w3id.conjectures.DecDatasetTest" time="0.001">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -97,10 +121,18 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 ----------------------------
  2 testInMemoryDataset
 ----------------------------               
+DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
 
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -108,10 +140,18 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 ]]></system-out>
   </testcase>
   <testcase name="test003_GetInstance" classname="org.w3id.conjectures.DecDatasetTest" time="0.001">
-    <system-out><![CDATA[
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -124,10 +164,18 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 ]]></system-out>
   </testcase>
   <testcase name="test004_QueryTimeout" classname="org.w3id.conjectures.DecDatasetTest" time="0.001">
-    <system-out><![CDATA[
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -135,10 +183,18 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 ----------------------------
  4 testQueryTimeout
 ----------------------------  
+DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
 
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -146,10 +202,18 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 ]]></system-out>
   </testcase>
   <testcase name="test005_AllowUpdate" classname="org.w3id.conjectures.DecDatasetTest" time="0.001">
-    <system-out><![CDATA[
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -160,11 +224,19 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
    Dataset allows updates as expected           
 ]]></system-out>
   </testcase>
-  <testcase name="test006_AddQuad" classname="org.w3id.conjectures.DecDatasetTest" time="0.052">
-    <system-out><![CDATA[
+  <testcase name="test006_AddQuad" classname="org.w3id.conjectures.DecDatasetTest" time="0.062">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -176,7 +248,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -193,11 +264,19 @@ Finished permeating
    Quad added successfully to dataset as expected               
 ]]></system-out>
   </testcase>
-  <testcase name="test007_AddRdfStarTriple" classname="org.w3id.conjectures.DecDatasetTest" time="0.013">
-    <system-out><![CDATA[
+  <testcase name="test007_AddRdfStarTriple" classname="org.w3id.conjectures.DecDatasetTest" time="0.018">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -209,7 +288,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -227,10 +305,18 @@ Finished permeating
 ]]></system-out>
   </testcase>
   <testcase name="test008_AddDecStatement" classname="org.w3id.conjectures.DecDatasetTest" time="0.002">
-    <system-out><![CDATA[
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -241,11 +327,19 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
    DEC statement added successfully to DecStatements map as expected            
 ]]></system-out>
   </testcase>
-  <testcase name="test010_Clear" classname="org.w3id.conjectures.DecDatasetTest" time="0.013">
-    <system-out><![CDATA[
+  <testcase name="test010_Clear" classname="org.w3id.conjectures.DecDatasetTest" time="0.014">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -257,7 +351,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -278,11 +371,19 @@ permeating
    Dataset is empty after clear as expected     
 ]]></system-out>
   </testcase>
-  <testcase name="test011_ClearAllSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.031">
-    <system-out><![CDATA[
+  <testcase name="test011_ClearAllSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.03">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -294,7 +395,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -312,11 +412,19 @@ Finished permeating
    Dataset is empty after CLEAR ALL as expected 
 ]]></system-out>
   </testcase>
-  <testcase name="test012_SingleQuadSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.034">
-    <system-out><![CDATA[
+  <testcase name="test012_SingleQuadSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.031">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -328,7 +436,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -345,11 +452,19 @@ Finished permeating
    Single quad added successfully via SPARQL as expected        
 ]]></system-out>
   </testcase>
-  <testcase name="test013_MultipleQuadsSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.018">
-    <system-out><![CDATA[
+  <testcase name="test013_MultipleQuadsSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.013">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -361,7 +476,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -380,11 +494,19 @@ Finished permeating
    Multiple quads added successfully via SPARQL as expected     
 ]]></system-out>
   </testcase>
-  <testcase name="test014_DeleteQuadsSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.02">
-    <system-out><![CDATA[
+  <testcase name="test014_DeleteQuadsSparql" classname="org.w3id.conjectures.DecDatasetTest" time="0.016">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -396,7 +518,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -416,10 +537,18 @@ Finished permeating
 ]]></system-out>
   </testcase>
   <testcase name="test015_DecStatements" classname="org.w3id.conjectures.DecDatasetTest" time="0.001">
-    <system-out><![CDATA[
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -431,11 +560,19 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
    All DEC statements stored with correct triples as expected   
 ]]></system-out>
   </testcase>
-  <testcase name="test016_DoxasticGraphWithRdfType" classname="org.w3id.conjectures.DecDatasetTest" time="0.335">
-    <system-out><![CDATA[
+  <testcase name="test016_DoxasticGraphWithRdfType" classname="org.w3id.conjectures.DecDatasetTest" time="0.273">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -447,7 +584,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -465,11 +601,19 @@ Finished permeating
    Both reasoners made the same inference about A being of type B               
 ]]></system-out>
   </testcase>
-  <testcase name="test017_VerbatimGraphWithSaysRange" classname="org.w3id.conjectures.DecDatasetTest" time="0.02">
-    <system-out><![CDATA[
+  <testcase name="test017_VerbatimGraphWithSaysRange" classname="org.w3id.conjectures.DecDatasetTest" time="0.017">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -481,7 +625,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -500,11 +643,19 @@ Finished permeating
    says predicate has correct verbatim range as expected        
 ]]></system-out>
   </testcase>
-  <testcase name="test018_SubClassInference" classname="org.w3id.conjectures.DecDatasetTest" time="0.017">
-    <system-out><![CDATA[
+  <testcase name="test018_SubClassInference" classname="org.w3id.conjectures.DecDatasetTest" time="0.014">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -516,7 +667,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -534,11 +684,19 @@ Finished permeating
    a is inferred to be of type C as expected    
 ]]></system-out>
   </testcase>
-  <testcase name="test019_SubclassInferenceSelect" classname="org.w3id.conjectures.DecDatasetTest" time="0.027">
-    <system-out><![CDATA[
+  <testcase name="test019_SubclassInferenceSelect" classname="org.w3id.conjectures.DecDatasetTest" time="0.023">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -550,7 +708,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -568,11 +725,19 @@ Finished permeating
    a is inferred to be of type C as expected    
 ]]></system-out>
   </testcase>
-  <testcase name="test020_SubclassInferenceConstruct" classname="org.w3id.conjectures.DecDatasetTest" time="0.012">
-    <system-out><![CDATA[
+  <testcase name="test020_SubclassInferenceConstruct" classname="org.w3id.conjectures.DecDatasetTest" time="0.01">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -584,7 +749,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -600,11 +764,19 @@ Finished permeating
    a is inferred to be of type C as expected    
 ]]></system-out>
   </testcase>
-  <testcase name="test021_MultipleGraphTypes" classname="org.w3id.conjectures.DecDatasetTest" time="0.12">
-    <system-out><![CDATA[
+  <testcase name="test021_MultipleGraphTypes" classname="org.w3id.conjectures.DecDatasetTest" time="0.098">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -616,7 +788,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -641,11 +812,19 @@ Finished permeating
    Entity a is not of type C in graph g2 as expected            
 ]]></system-out>
   </testcase>
-  <testcase name="test022_MultipleGraphTypesWithPredicates" classname="org.w3id.conjectures.DecDatasetTest" time="0.126">
-    <system-out><![CDATA[
+  <testcase name="test022_MultipleGraphTypesWithPredicates" classname="org.w3id.conjectures.DecDatasetTest" time="0.105">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -657,7 +836,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -682,11 +860,19 @@ Finished permeating
    Entity a is not of type C in graph g3 as expected            
 ]]></system-out>
   </testcase>
-  <testcase name="test023_OwlReasoningComparison" classname="org.w3id.conjectures.DecDatasetTest" time="0.165">
-    <system-out><![CDATA[
+  <testcase name="test023_OwlReasoningComparison" classname="org.w3id.conjectures.DecDatasetTest" time="0.153">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -698,7 +884,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -716,11 +901,19 @@ Finished permeating
    Both reasoners made the same inference about A being of type B               
 ]]></system-out>
   </testcase>
-  <testcase name="test024_RdfStarWithSameAsDoxastic" classname="org.w3id.conjectures.DecDatasetTest" time="0.033">
-    <system-out><![CDATA[
+  <testcase name="test024_RdfStarWithSameAsDoxastic" classname="org.w3id.conjectures.DecDatasetTest" time="0.026">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -733,7 +926,6 @@ Hash for        ex:LoisLane     ex:thinks       << ex:superman @ex:can ex:fly >>
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -752,11 +944,19 @@ Finished permeating
    LoisLane does not think ClarkKent can fly as expected        
 ]]></system-out>
   </testcase>
-  <testcase name="test025_RdfStarWithSameAsConjectural" classname="org.w3id.conjectures.DecDatasetTest" time="0.047">
-    <system-out><![CDATA[
+  <testcase name="test025_RdfStarWithSameAsConjectural" classname="org.w3id.conjectures.DecDatasetTest" time="0.04">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -769,7 +969,6 @@ Hash for        ex:MotherKent   ex:supposes     << ex:superman @ex:can ex:fly >>
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -788,11 +987,19 @@ Finished permeating
    MotherKent supposes ClarkKent can fly as expected            
 ]]></system-out>
   </testcase>
-  <testcase name="test026_RdfStarWithSameAsEpistemic" classname="org.w3id.conjectures.DecDatasetTest" time="0.031">
-    <system-out><![CDATA[
+  <testcase name="test026_RdfStarWithSameAsEpistemic" classname="org.w3id.conjectures.DecDatasetTest" time="0.023">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -805,7 +1012,6 @@ Hash for        ex:superman     ex:knows        << ex:superman @ex:can ex:fly >>
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -824,11 +1030,19 @@ Finished permeating
    Superman does not know ClarkKent can fly as expected         
 ]]></system-out>
   </testcase>
-  <testcase name="test027_ReifiedTriplesWithSameAsDoxastic" classname="org.w3id.conjectures.DecDatasetTest" time="0.034">
-    <system-out><![CDATA[
+  <testcase name="test027_ReifiedTriplesWithSameAsDoxastic" classname="org.w3id.conjectures.DecDatasetTest" time="0.025">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -840,7 +1054,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -862,11 +1075,19 @@ Finished permeating
   <testcase name="test028_ReifiedTriplesWithSameAsConjectural" classname="org.w3id.conjectures.DecDatasetTest" time="0.0">
     <skipped message="public void org.w3id.conjectures.DecDatasetTest.test028_ReifiedTriplesWithSameAsConjectural() is @Disabled"/>
   </testcase>
-  <testcase name="test029_ReifiedTriplesWithSameAsEpistemic" classname="org.w3id.conjectures.DecDatasetTest" time="0.025">
-    <system-out><![CDATA[
+  <testcase name="test029_ReifiedTriplesWithSameAsEpistemic" classname="org.w3id.conjectures.DecDatasetTest" time="0.022">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -878,7 +1099,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -896,11 +1116,19 @@ Finished permeating
    It is stated that ClarkKent can fly, as expected             
 ]]></system-out>
   </testcase>
-  <testcase name="test030_ReifiedTriplesWithSameAsNirvana" classname="org.w3id.conjectures.DecDatasetTest" time="0.023">
-    <system-out><![CDATA[
+  <testcase name="test030_ReifiedTriplesWithSameAsNirvana" classname="org.w3id.conjectures.DecDatasetTest" time="0.019">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -912,7 +1140,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -930,11 +1157,19 @@ Finished permeating
    It is stated that ClarkKent can fly, as expected             
 ]]></system-out>
   </testcase>
-  <testcase name="test031_InferenceWithClearAll" classname="org.w3id.conjectures.DecDatasetTest" time="0.059">
-    <system-out><![CDATA[
+  <testcase name="test031_InferenceWithClearAll" classname="org.w3id.conjectures.DecDatasetTest" time="0.051">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -946,7 +1181,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -974,8 +1208,8 @@ Finished permeating
     ex:conjecturalGraph             ex:Animal       rdfs:subClassOf rdfs:Resource   
     ex:conjecturalGraph             rdf:subject     rdf:type        rdf:Property    
     ex:conjecturalGraph             rdf:subject     rdfs:domain     rdf:Statement   
-    ex:conjecturalGraph             ex:bruno        rdf:type        ex:Animal       
     ex:conjecturalGraph             ex:bruno        rdf:type        rdfs:Resource   
+    ex:conjecturalGraph             ex:bruno        rdf:type        ex:Animal       
     ex:conjecturalGraph             ex:bruno        rdf:type        ex:Person       
     ex:conjecturalGraph             rdf:object      rdfs:domain     rdfs:Resource   
     ex:conjecturalGraph             rdf:object      rdfs:subPropertyOf              rdf:object      
@@ -991,8 +1225,8 @@ Finished permeating
     ex:conjecturalGraph             ex:Student      owl:equivalentClass             ex:Student      
     ex:conjecturalGraph             ex:Student      rdf:type        owl:Class       
     ex:conjecturalGraph             ex:Student      rdfs:subClassOf ex:Person       
-    ex:conjecturalGraph             ex:Student      rdf:type        rdfs:Resource   
     ex:conjecturalGraph             ex:Student      rdf:type        rdfs:Class      
+    ex:conjecturalGraph             ex:Student      rdf:type        rdfs:Resource   
     ex:conjecturalGraph             ex:Student      rdfs:subClassOf rdfs:Resource   
     ex:conjecturalGraph             ex:Student      rdfs:subClassOf ex:Student      
     ex:conjecturalGraph             ex:Animal       rdf:type        rdfs:Resource   
@@ -1019,21 +1253,21 @@ Finished permeating
     ex:conjecturalGraph             ex:mario        owl:sameAs      ex:mario        
     ex:conjecturalGraph             ex:bruno        owl:sameAs      ex:bruno        
     ex:conjecturalGraph             ex:alice        owl:sameAs      ex:alice        
-    ex:conjecturalGraph             ex:PhD          rdf:type        owl:Class       
-    ex:conjecturalGraph             ex:Animal       rdf:type        owl:Class       
-    ex:conjecturalGraph             ex:Animal       owl:equivalentClass             ex:Animal       
     ex:conjecturalGraph             ex:PhD          owl:equivalentClass             ex:PhD          
+    ex:conjecturalGraph             ex:Animal       owl:equivalentClass             ex:Animal       
+    ex:conjecturalGraph             ex:Animal       rdf:type        owl:Class       
+    ex:conjecturalGraph             ex:PhD          rdf:type        owl:Class       
     ex:epistemicGraph               rdf:object      rdf:type        rdf:Property    
     ex:epistemicGraph               rdf:object      rdfs:domain     rdf:Statement   
     ex:epistemicGraph               rdf:subject     rdf:type        rdf:Property    
     ex:epistemicGraph               rdf:subject     rdfs:domain     rdf:Statement   
     ex:epistemicGraph               ex:Student      rdfs:subClassOf ex:Person       
+    ex:epistemicGraph               ex:Person       rdf:type        rdfs:Resource   
+    ex:epistemicGraph               ex:Student      rdf:type        rdfs:Class      
+    ex:epistemicGraph               ex:Person       rdf:type        rdfs:Class      
     ex:epistemicGraph               rdf:subject     rdfs:domain     rdfs:Resource   
     ex:epistemicGraph               rdf:object      rdfs:domain     rdfs:Resource   
     ex:epistemicGraph               ex:Student      rdf:type        rdfs:Resource   
-    ex:epistemicGraph               ex:Person       rdf:type        rdfs:Resource   
-    ex:epistemicGraph               ex:Person       rdf:type        rdfs:Class      
-    ex:epistemicGraph               ex:Student      rdf:type        rdfs:Class      
     ex:epistemicGraph               rdf:object      rdfs:subPropertyOf              rdf:object      
     ex:epistemicGraph               rdf:subject     rdfs:subPropertyOf              rdf:subject     
     ex:epistemicGraph               rdf:object      rdf:type        rdfs:Resource   
@@ -1057,8 +1291,8 @@ Finished permeating
                     ex:Student      owl:equivalentClass             ex:Student      
                     ex:Student      rdf:type        owl:Class       
                     ex:Student      rdfs:subClassOf ex:Person       
-                    ex:Student      rdf:type        rdfs:Resource   
                     ex:Student      rdf:type        rdfs:Class      
+                    ex:Student      rdf:type        rdfs:Resource   
                     ex:Student      rdfs:subClassOf rdfs:Resource   
                     ex:Student      rdfs:subClassOf ex:Student      
                     ex:mario        rdf:type        ex:Animal       
@@ -1066,10 +1300,8 @@ Finished permeating
                     ex:mario        rdf:type        rdfs:Resource   
                     ex:mario        rdf:type        ex:Student      
                     ex:epistemicGraph               rdf:type        dec:epistemicWorld              
-                    edd8234a-2772-4d25-bcf2-a142df48aadb            dec:buildVersion                "1.0.22"        
-                    edd8234a-2772-4d25-bcf2-a142df48aadb            dec:buildTime   "13 Sep 2025 19:00:15 CEST"     
-                    ex:bruno        rdf:type        ex:Animal       
                     ex:bruno        rdf:type        rdfs:Resource   
+                    ex:bruno        rdf:type        ex:Animal       
                     ex:bruno        rdf:type        ex:Person       
                     ex:Animal       rdf:type        rdfs:Resource   
                     ex:Animal       rdf:type        rdfs:Class      
@@ -1080,6 +1312,8 @@ Finished permeating
                     rdf:subject     rdf:type        rdf:Property    
                     rdf:subject     owl:equivalentProperty          rdf:subject     
                     ex:conjecturalGraph             rdf:type        dec:conjecturalWorld            
+                    557d1c81-a93f-415c-8141-4d82c0532bff            dec:buildVersion                "1.0.47"        
+                    557d1c81-a93f-415c-8141-4d82c0532bff            dec:buildTime   "14 Sep 2025 09:32:44 CEST"     
     plus 1908 trivial triples       
     =======================================================================         
     
@@ -1090,11 +1324,19 @@ Finished permeating
    Dataset is empty after CLEAR ALL as expected 
 ]]></system-out>
   </testcase>
-  <testcase name="test032_BaseTest" classname="org.w3id.conjectures.DecDatasetTest" time="0.01">
-    <system-out><![CDATA[
+  <testcase name="test032_BaseTest" classname="org.w3id.conjectures.DecDatasetTest" time="0.008">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -1106,7 +1348,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    
@@ -1123,8 +1364,8 @@ Finished permeating
 
     ====================== content of result set ==========================     
     ex:g2           ex:A            rdfs:subClassOf ex:C            
-                    rdf:object      rdf:type        rdfs:Resource   
                     rdf:object      rdfs:subPropertyOf              rdf:object      
+                    rdf:object      rdf:type        rdfs:Resource   
                     rdf:object      rdfs:domain     rdfs:Resource   
                     rdf:object      rdfs:domain     rdf:Statement   
                     rdf:object      rdf:type        rdf:Property    
@@ -1132,26 +1373,34 @@ Finished permeating
                     ex:entityX      rdf:type        ex:A            
                     ex:B            rdf:type        rdfs:Resource   
                     ex:B            rdf:type        rdfs:Class      
+                    a5130f63-0877-4201-99a3-9b2679b519ce            dec:buildVersion                "1.0.47"        
+                    a5130f63-0877-4201-99a3-9b2679b519ce            dec:buildTime   "14 Sep 2025 09:32:44 CEST"     
                     ex:A            rdf:type        rdfs:Resource   
                     ex:A            rdf:type        rdfs:Class      
                     ex:A            rdfs:subClassOf ex:B            
-                    rdf:subject     rdf:type        rdfs:Resource   
                     rdf:subject     rdfs:subPropertyOf              rdf:subject     
+                    rdf:subject     rdf:type        rdfs:Resource   
                     rdf:subject     rdfs:domain     rdfs:Resource   
                     rdf:subject     rdfs:domain     rdf:Statement   
                     rdf:subject     rdf:type        rdf:Property    
-                    668b0456-ff22-4194-b997-f1bd30faedaf            dec:buildVersion                "1.0.22"        
-                    668b0456-ff22-4194-b997-f1bd30faedaf            dec:buildTime   "13 Sep 2025 19:00:15 CEST"     
     plus 634 trivial triples        
     =======================================================================         
     
 ]]></system-out>
   </testcase>
-  <testcase name="test033_OwlInconsistency" classname="org.w3id.conjectures.DecDatasetTest" time="0.009">
-    <system-out><![CDATA[
+  <testcase name="test033_OwlInconsistency" classname="org.w3id.conjectures.DecDatasetTest" time="0.008">
+    <system-out><![CDATA[DecUtils: debug level (4): 1    
+DecDataset: debug level (1): 1  
+DefaultGraphHandler: debug level (6): 1         
+NamedGraphHandler: debug level (7): 1           
+RDFStarHandler: debug level (8): 1              
+ReificationHandler: debug level (9): 1          
+DecReasoner: debug level (2): 1 
+
 =================================================================               
                 
-DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST    
+DecDataset version 1.0.47 built at 14 Sep 2025 09:32:44 CEST    
+debug levels: 1 
                 
 =================================================================               
 
@@ -1163,7 +1412,6 @@ DecDataset version 1.0.22 built at 13 Sep 2025 19:00:15 CEST
 permeating     
     clearDecData                
     handleReifications          
-    assignDecTypes              
     assignDecPredicates         
     assignDecPointOfViewPredicates              
     assignDecPermeationsAndInferenceSettings    

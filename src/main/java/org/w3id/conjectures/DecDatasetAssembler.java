@@ -28,12 +28,23 @@ import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.reasoner.Reasoner;
 import org.apache.jena.reasoner.ReasonerRegistry;
 import org.apache.jena.sparql.core.DatasetGraph;
+import org.apache.jena.rdf.model.Property;
 
 import java.util.Arrays;
 
 @SuppressWarnings("unused")
 public class DecDatasetAssembler extends AssemblerBase {
     private static int debug = 0;
+
+    private static final String DEC = "http://w3id.org/conjectures/";
+private static final Property LOCATION_PROP = ResourceFactory.createProperty(DEC, "location");
+private static final Property USE_TDB2_PROP = ResourceFactory.createProperty(DEC, "useTDB2");
+private static final Property UNION_DG_PROP = ResourceFactory.createProperty(DEC, "unionDefaultGraph");
+private static final Property ALLOW_UPDATE_PROP = ResourceFactory.createProperty(DEC, "allowUpdate");
+private static final Property QUERY_TIMEOUT_PROP = ResourceFactory.createProperty(DEC, "queryTimeout");
+private static final Property REASONER_URI_PROP = ResourceFactory.createProperty(DEC, "baseReasoner");
+private static final Property LOG_LEVELS_PROP = ResourceFactory.createProperty(DEC, "loggingLevels");
+
 
     static {
         init();  // Ensures `init()` is always called when the class is loaded
@@ -50,14 +61,19 @@ public class DecDatasetAssembler extends AssemblerBase {
 
     @Override
     public Dataset open(Assembler a, Resource root, Mode mode) {
+        DecUtils.out("DecDatasetAssembler: open");
         try {
-            String location = getStringValue(root, "location", DecUtils.DEFAULT_LOCATION);
-            boolean useTDB2 = getBooleanValue(root, "useTDB2", false);
-            boolean unionDefaultGraph = getBooleanValue(root, "unionDefaultGraph", false);
-            boolean allowUpdate = getBooleanValue(root, "allowUpdate", true);
-            int queryTimeout = getIntValue(root, "queryTimeout", 60000);
-            String reasonerURI = getStringValue(root, "baseReasoner", null);
-            String levels = getStringValue(root, "loggingLevels", "1");
+            String location = getStringValue(root, LOCATION_PROP, DecUtils.DEFAULT_LOCATION);
+            boolean useTDB2 = getBooleanValue(root, USE_TDB2_PROP, false);
+            boolean unionDefaultGraph = getBooleanValue(root, UNION_DG_PROP, false);
+            boolean allowUpdate = getBooleanValue(root, ALLOW_UPDATE_PROP, true);
+            int queryTimeout = getIntValue(root, QUERY_TIMEOUT_PROP, 60000);
+            String reasonerURI = getStringValue(root, REASONER_URI_PROP, null);
+            String levels = getStringValue(root, LOG_LEVELS_PROP, "1");
+
+            root.listProperties().forEachRemaining(stmt ->
+                DecUtils.out("Property: " + stmt.getPredicate() + " -> " + stmt.getObject())
+            );
 
             // Load the reasoner
             Reasoner reasoner = null;
@@ -80,6 +96,7 @@ public class DecDatasetAssembler extends AssemblerBase {
 
             DatasetGraph datasetGraph = new DecDataset(location, useTDB2, unionDefaultGraph, allowUpdate, queryTimeout, baseReasoner, levels);            
             debug = DecUtils.getDebugLevel(0);
+            DecUtils.out("DecDatasetAssembler: debug level (0)" + debug);
 
             return DatasetFactory.wrap(datasetGraph);
         } catch (Exception e) {
@@ -96,23 +113,23 @@ public class DecDatasetAssembler extends AssemblerBase {
             className, method, location, e.getMessage()));
     }
     
-    private String getStringValue(Resource root, String property, String defaultValue) {
-        if (root.hasProperty(root.getModel().createProperty(property))) {
-            return root.getProperty(root.getModel().createProperty(property)).getString();
+    private String getStringValue(Resource root, Property property, String defaultValue) {
+        if (root.hasProperty(property)) {
+            return root.getProperty(property).getString();
+        }
+        return defaultValue;
+    }
+    
+    private boolean getBooleanValue(Resource root, Property property, boolean defaultValue) {
+        if (root.hasProperty(property)) {
+            return root.getProperty(property).getBoolean();
         }
         return defaultValue;
     }
 
-    private boolean getBooleanValue(Resource root, String property, boolean defaultValue) {
-        if (root.hasProperty(root.getModel().createProperty(property))) {
-            return root.getProperty(root.getModel().createProperty(property)).getBoolean();
-        }
-        return defaultValue;
-    }
-
-    private int getIntValue(Resource root, String property, int defaultValue) {
-        if (root.hasProperty(root.getModel().createProperty(property))) {
-            return root.getProperty(root.getModel().createProperty(property)).getInt();
+    private int getIntValue(Resource root, Property property, int defaultValue) {
+        if (root.hasProperty(property)) {
+            return root.getProperty(property).getInt();
         }
         return defaultValue;
     }

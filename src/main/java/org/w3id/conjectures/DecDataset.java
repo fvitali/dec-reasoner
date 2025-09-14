@@ -119,6 +119,7 @@ public class DecDataset implements DatasetGraph {
 
 		DecUtils.setDebugLevel(levels);
 		this.debug = DecUtils.getDebugLevel(1); // Position 1 for DecDataset
+		DecUtils.out("DecDataset: debug level (1): " + debug);
 
 		this.dgh = new DefaultGraphHandler(this);
 		this.ngh = new NamedGraphHandler(this);
@@ -134,6 +135,7 @@ public class DecDataset implements DatasetGraph {
 			"=================================================================",
 			"",
 			"DecDataset version " + version + " built at " + buildtime,
+			"debug levels: " + levels,
 			"",
 			"=================================================================", 
 			false);
