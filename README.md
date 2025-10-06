@@ -1,10 +1,17 @@
 # DEC Reasoner
 
-A Java-based RDF reasoner implementing DEC (Description Logic with Exceptions and Constraints) reasoning capabilities, built on top of Apache Jena and Fuseki.
+DEC Reasoner is an RDF reasoner for cognitive worlds over a quad store using Fuseki 4.8.0.
+
+### DEC cognitive worlds
+DEC stands for Doxastic, Epistemic, and Conjectural, three types of cognitive worlds meant to characterize the subjective state of mind of one or more actors holding beliefs, concepts and hypotheses over reality. Examples are "Alice believes that John is a painter" or "Bruce knows that painters are artists." or "Catherine supposes John painted 'Still life #13'." The DEC Reasoner is able to carry out inferences on objective and subjective assertions like these when expressed in RDF.
+
+Cognitive worlds are sets of statements, isolated from each other (and, in general, from reality), which are held for true, or abstractly considered for evaluation, by a cognitive agent or within a given cognitive contest. The exact nature of the cognitive world is given by a predicate connecting the agent (or the context) to the cognitive world, and is determined by the nature of the governing verb. 
+
+Please visit [the DEC Viewer](http://204.216.209.229:3000/) web application for a more detailed introduction and several examples.  
 
 ## Features
 
-- **DEC Reasoning**: Implements Description Logic with Exceptions and Constraints for advanced RDF reasoning
+- **DEC Reasoning**: Implements Doxastic, Epistemic and Conjectural Inference for RDF graphs and rdf-star datasets
 - **SPARQL Endpoint**: Provides a Fuseki-based SPARQL endpoint with custom reasoning capabilities
 - **TDB2 Integration**: Uses Jena TDB2 for efficient triple storage and querying
 - **Custom Dataset Assembler**: Extends Jena's dataset functionality for DEC-specific operations
@@ -103,9 +110,9 @@ curl -X PUT -H "Content-Type: application/rdf+xml" \
 src/main/java/org/w3id/conjectures/
 ├── DecDataset.java           # Main dataset implementation
 ├── DecDatasetAssembler.java  # Jena assembler for DEC datasets
-├── DecReasoner.java          # Core reasoning engine
-├── DecWorld.java             # World model for DEC reasoning
-└── handler/                  # Statement handlers for different RDF features
+├── DecReasoner.java          # Wrapper of the reasoning engine
+├── DecWorld.java             # Cognitive world model
+└── handler/                  # Statement handlers for different RDF syntaxes
 ```
 
 ### Building and Testing

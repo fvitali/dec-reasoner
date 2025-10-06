@@ -96,7 +96,7 @@ private static final Property LOG_LEVELS_PROP = ResourceFactory.createProperty(D
 
             DatasetGraph datasetGraph = new DecDataset(location, useTDB2, unionDefaultGraph, allowUpdate, queryTimeout, baseReasoner, levels);            
             debug = DecUtils.getDebugLevel(0);
-            DecUtils.out("DecDatasetAssembler: debug level (0)" + debug);
+            DecUtils.out("DecDatasetAssembler: debug level (0): " + debug);
 
             return DatasetFactory.wrap(datasetGraph);
         } catch (Exception e) {
