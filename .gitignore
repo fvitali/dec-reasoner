@@ -67,9 +67,12 @@ prefixIdx.*
 tdb.cfg
 tdb.lock
 
-# Fuseki runtime
+# Fuseki runtime and deployment files
 fuseki/server/run/
 fuseki/Data-*/
+Dockerfile
+fuseki-server.jar
+*.tar
 
 # Temporary files
 *~
