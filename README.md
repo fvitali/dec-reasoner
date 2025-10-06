@@ -19,8 +19,9 @@ A Java-based RDF reasoner implementing DEC (Description Logic with Exceptions an
 ### Option 1: Download Pre-built JAR
 
 1. Download the latest `dec-1.0.0.jar` from the releases page
-2. Download the configuration file `config.ttl`
-3. Place both files in your working directory
+2. Download the Apache Jena Fuseki server JAR (`jena-fuseki-server-4.8.0.jar`) from the [Jena releases](https://jena.apache.org/download/)
+3. Copy both JARs to the `fuseki/server/` directory
+4. Copy `src/main/resources/config.ttl` to `fuseki/server/config.ttl`
 
 ### Option 2: Build from Source
 
@@ -35,14 +36,21 @@ A Java-based RDF reasoner implementing DEC (Description Logic with Exceptions an
    mvn clean compile package
    ```
 
-3. The JAR file will be created in the `target/` directory as `dec-1.0.0.jar`
+3. Copy the built JAR files to the `fuseki/server/` directory:
+   ```bash
+   cp target/dec-1.0.0.jar fuseki/server/
+   # Also copy fuseki-server.jar if not already present
+   ```
 
 ## Quick Start
 
-1. **Start the server**:
+1. **Start the server** (from the project root):
    ```bash
-   java -cp "dec-1.0.0.jar:fuseki-server.jar" org.apache.jena.fuseki.cmd.FusekiCmd --config=config.ttl
+   cd fuseki/server
+   java -cp "fuseki-server.jar:dec-1.0.0.jar" org.apache.jena.fuseki.cmd.FusekiCmd --config=config.ttl
    ```
+
+   *Note: Ensure `fuseki-server.jar` is available in the `fuseki/server/` directory alongside your `dec-1.0.0.jar`*
 
 2. **Access the endpoint**:
    - SPARQL Query: http://localhost:3030/dec/sparql
@@ -129,7 +137,7 @@ The DEC dataset assembler supports several configuration parameters:
 
 ## License
 
-This project is licensed under the BSD 3-Clause License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contributing
 
