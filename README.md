@@ -1,14 +1,16 @@
 # DEC Reasoner
 
-A SPARQL reasoning engine that implements DEC (Disagreement, Epistemic, and Conjectural) reasoning capabilities. This system extends Apache Jena Fuseki with custom reasoning logic for handling epistemic worlds, conjectural statements, and disagreement analysis.
+A SPARQL reasoning engine that implements DEC (Doxastic, Epistemic, and Conjectural) reasoning capabilities. This system extends Apache Jena Fuseki with custom reasoning logic for handling doxastic, epistemic, and conjectural statements, and disagreement analysis.
 
 ## What is DEC Reasoning?
 
-DEC (Disagreement, Epistemic, and Conjectural) reasoning is a framework for representing and analyzing different types of knowledge and belief states:
+## What is DEC Reasoning?
 
-- **Disagreement**: Representing conflicting viewpoints or contradictory information between different sources or agents
-- **Epistemic**: Knowledge states and what agents know, believe, or are uncertain about
-- **Conjectural**: Hypothetical, speculative, or tentative information that may be revised
+DEC (Doxastic, Epistemic, and Conjectural) reasoning is a framework for representing and analyzing different types of knowledge and belief states based on modal logic:
+
+- **Doxastic worlds** represent agents' arbitrary viewpoints regardless of their alignment to actual facts;
+- **Epistemic worlds**: represent agents' knowledge, i.e., possibly partial, but factually correct viewpoints;  
+- **Conjectural worlds**: represent agents' hypothesis, i.e., extensions of actual facts that are currently neither true nor false, but are assumed to be for the purpose of the reasoning.  
 
 The DEC Reasoner provides SPARQL extensions and reasoning capabilities to work with these concepts in RDF datasets.
 
