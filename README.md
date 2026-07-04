@@ -109,7 +109,6 @@ For each DEC category, the implementation recognises three related forms:
 | doxastic | `dec:doxasticWorld` | `dec:doxasticPredicate` | `dec:doxasticReversePredicate` |
 | epistemic | `dec:epistemicWorld` | `dec:epistemicPredicate` | `dec:epistemicReversePredicate` |
 | conjectural | `dec:conjecturalWorld` | `dec:conjecturalPredicate` | `dec:conjecturalReversePredicate` |
-| shared | `dec:sharedWorld` | `dec:sharedPredicate` | `dec:sharedReversePredicate` |
 | reality | `dec:realityWorld` | `dec:realityPredicate` | `dec:realityReversePredicate` |
 
 ## Permeation model
@@ -380,8 +379,6 @@ dec-reasoner/
 - Reasoning is materialisation-oriented: updates may trigger reconstruction of
   world-relative graphs and inferred statements.
 - Inconsistency checking depends on the configured Jena base reasoner.
-- The implemented categories include internal and experimental world types whose
-  behaviour may change.
 - The project is designed to demonstrate the DEC model, not to replace a
   general-purpose RDF store.
 
