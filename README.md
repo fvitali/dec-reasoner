@@ -59,16 +59,6 @@ The main world types are:
 | `dec:conjecturalWorld` | A hypothesis or supposition evaluated against reality without becoming factual. |
 | `dec:realityWorld` | The factual core: ordinary assertions, shared knowledge, and epistemic consequences. |
 
-The implementation also contains the following DEC categories:
-
-| Category | Current role |
-|---|---|
-| `dec:nirvanaWorld` | Implemented experimental category. It receives shared and reality, and contributes to reality. |
-| `dec:unionWorld` | Implemented category with inference disabled. It can contribute to reality. |
-| `dec:coloredWorld` | Implemented category receiving shared knowledge with inference enabled. |
-| `dec:specialWorld` | Internal category used for implementation graphs. |
-| `dec:errorWorld` | Internal category for invalid or inconsistent world classification. |
-
 ## Declaring cognitive worlds
 
 A cognitive world can be declared directly:
@@ -119,13 +109,8 @@ For each DEC category, the implementation recognises three related forms:
 | doxastic | `dec:doxasticWorld` | `dec:doxasticPredicate` | `dec:doxasticReversePredicate` |
 | epistemic | `dec:epistemicWorld` | `dec:epistemicPredicate` | `dec:epistemicReversePredicate` |
 | conjectural | `dec:conjecturalWorld` | `dec:conjecturalPredicate` | `dec:conjecturalReversePredicate` |
-| nirvana | `dec:nirvanaWorld` | `dec:nirvanaPredicate` | `dec:nirvanaReversePredicate` |
 | shared | `dec:sharedWorld` | `dec:sharedPredicate` | `dec:sharedReversePredicate` |
 | reality | `dec:realityWorld` | `dec:realityPredicate` | `dec:realityReversePredicate` |
-| union | `dec:unionWorld` | `dec:unionPredicate` | `dec:unionReversePredicate` |
-| colored | `dec:coloredWorld` | `dec:coloredPredicate` | `dec:coloredReversePredicate` |
-| special | `dec:specialWorld` | `dec:specialPredicate` | `dec:specialReversePredicate` |
-| error | `dec:errorWorld` | `dec:errorPredicate` | `dec:errorReversePredicate` |
 
 ## Permeation model
 
@@ -140,11 +125,6 @@ worlds and reality. This availability is called **permeation**.
 | **epistemic** | shared | reality | yes, locally; consequences become factual |
 | **conjectural** | shared and reality | nowhere | yes, locally |
 | **reality** | shared and epistemic worlds | conjectural worlds | yes |
-| **nirvana** | shared and reality | reality | yes |
-| **union** | nothing | reality | no |
-| **colored** | shared | nowhere | yes, locally |
-| **special** | nothing | nowhere | no |
-| **error** | nothing | nowhere | no |
 
 A **verbatim world** is isolated. Its statements are preserved as reported and
 no inference is performed inside it.
