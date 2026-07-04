@@ -1,306 +1,429 @@
 # DEC Reasoner
 
-A SPARQL reasoning engine that implements DEC (Doxastic, Epistemic, and Conjectural) reasoning capabilities. This system extends Apache Jena Fuseki with custom reasoning logic for handling doxastic, epistemic, and conjectural statements, and disagreement analysis.
+DEC Reasoner is a prototype reasoner for RDF datasets containing attributed,
+subjective, or hypothetical statements. It implements the DEC model
+(**Doxastic, Epistemic, and Conjectural**) over Apache Jena Fuseki.
 
-## What is DEC Reasoning?
+The reasoner treats attributed statements as belonging to **cognitive worlds**:
+separate contexts in which statements may be reported verbatim, believed,
+known, conjectured, shared, or accepted as factual. DEC controls how these
+worlds interact through **permeation**, namely the controlled availability of
+statements from one world to another.
 
-## What is DEC Reasoning?
+The project is part of the work described in:
 
-DEC (Doxastic, Epistemic, and Conjectural) reasoning is a framework for representing and analyzing different types of knowledge and belief states based on modal logic:
+> Fabio Vitali and Valentina Pasqual, *Provenance-Enhanced Statements in
+> Knowledge Graphs*, arXiv:2606.15246, 2026.
+> <https://arxiv.org/abs/2606.15246>
 
-- **Doxastic worlds** represent agents' arbitrary viewpoints regardless of their alignment to actual facts;
-- **Epistemic worlds**: represent agents' knowledge, i.e., possibly partial, but factually correct viewpoints;  
-- **Conjectural worlds**: represent agents' hypothesis, i.e., extensions of actual facts that are currently neither true nor false, but are assumed to be for the purpose of the reasoning.  
+A live demonstrator is available at:
 
-The DEC Reasoner provides SPARQL extensions and reasoning capabilities to work with these concepts in RDF datasets.
+<https://w3id.org/conjectures/dec>
 
-## Features
+The web interface is maintained separately in the
+[`dec-viewer`](https://github.com/fvitali/dec-viewer) repository.
 
-- **Extended SPARQL Support**: Custom functions and reasoning for DEC concepts
-- **Epistemic Worlds**: Support for representing different knowledge states and belief contexts
-- **RDF-star Processing**: Handle quoted triples for meta-statements about statements
-- **Disagreement Detection**: Automatic identification of conflicting information
-- **Conjectural Reasoning**: Processing of hypothetical and speculative statements
-- **Apache Jena Integration**: Built on top of the robust Jena framework
+## Status
 
-## Quick Start with Pre-built JAR
+This is a research prototype. It is intended to demonstrate DEC reasoning over
+RDF datasets, not to provide a production-grade triple store.
 
-### Prerequisites
+The current codebase is built with:
 
-- Java 11 or higher
-- At least 2GB RAM recommended
+- Java 17;
+- Apache Jena / Fuseki 4.8.0;
+- Maven;
+- a configurable Jena base reasoner, by default OWL FB rule reasoning in the
+  provided configuration.
 
-### Download and Run
+## What DEC adds to RDF
 
-1. **Download the latest JAR file:**
-   - Download `dec-1.0.0.jar` from the [releases page](https://github.com/fvitali/dec-reasoner/releases)
-   - Or build from source (see below)
+RDF provides several ways to represent attributed or contextual statements:
 
-2. **Run the reasoner:**
-   ```bash
-   java -jar dec-1.0.0.jar
-   ```
+- named graphs;
+- RDF-star quoted triples;
+- classical RDF reification.
 
-3. **Access the SPARQL endpoint:**
-   - SPARQL Query: `http://localhost:3030/dec/sparql`
-   - SPARQL Update: `http://localhost:3030/dec/update`
-   - Web Interface: `http://localhost:3030`
+DEC gives these structures an epistemic interpretation. A quoted, reified, or
+named set of statements can be treated as a cognitive world, and a cognitive
+world can be classified according to the kind of stance it represents.
 
-### Configuration
+The main world types are:
 
-The reasoner uses a configuration file (`config.ttl`) that defines:
-- Dataset assemblies and reasoning rules
-- DEC-specific processing options
-- SPARQL endpoint settings
+| World type | Meaning |
+|---|---|
+| `dec:verbatimWorld` | A reported wording or assertion kept exactly as stated. No inference is performed inside it. |
+| `dec:sharedWorld` | Background knowledge available to reality and to non-verbatim worlds. |
+| `dec:doxasticWorld` | A belief, opinion, conviction, or subjective stance independent of reality. |
+| `dec:epistemicWorld` | Knowledge, discovery, judgment, or accepted evidence. Its consequences become factual. |
+| `dec:conjecturalWorld` | A hypothesis or supposition evaluated against reality without becoming factual. |
+| `dec:realityWorld` | The factual core: ordinary assertions, shared knowledge, and epistemic consequences. |
 
-## Building from Source
+The implementation also contains the following DEC categories:
 
-### Prerequisites
+| Category | Current role |
+|---|---|
+| `dec:nirvanaWorld` | Implemented experimental category. It receives shared and reality, and contributes to reality. |
+| `dec:unionWorld` | Implemented category with inference disabled. It can contribute to reality. |
+| `dec:coloredWorld` | Implemented category receiving shared knowledge with inference enabled. |
+| `dec:specialWorld` | Internal category used for implementation graphs. |
+| `dec:errorWorld` | Internal category for invalid or inconsistent world classification. |
 
-- Java 11 or higher
-- Apache Maven 3.6 or higher
-- Git
+## Declaring cognitive worlds
 
-### Build Steps
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/fvitali/dec-reasoner.git
-   cd dec-reasoner
-   ```
-
-2. **Build the project:**
-   ```bash
-   mvn clean compile
-   ```
-
-3. **Run tests:**
-   ```bash
-   mvn test
-   ```
-
-4. **Create the JAR file:**
-   ```bash
-   mvn package
-   ```
-   
-   This creates `target/dec-1.0.0.jar`
-
-5. **Run the built JAR:**
-   ```bash
-   java -jar target/dec-1.0.0.jar
-   ```
-
-### Development Build
-
-For development with automatic recompilation:
-
-```bash
-mvn compile exec:java -Dexec.mainClass="org.apache.jena.fuseki.main.FusekiMain" -Dexec.args="--config=src/main/resources/config.ttl"
-```
-
-## Project Structure
-
-```
-dec-reasoner/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── org/w3id/conjectures/
-│   │   │       ├── DecDataset.java          # Main dataset implementation
-│   │   │       ├── DecDatasetAssembler.java # Dataset factory
-│   │   │       ├── DecReasoner.java         # Core reasoning engine
-│   │   │       ├── DecUtils.java            # Utility functions
-│   │   │       ├── DecWorld.java            # Epistemic world handling
-│   │   │       └── handler/                 # Statement processors
-│   │   └── resources/
-│   │       ├── config.ttl                   # Fuseki configuration
-│   │       └── shiro.ini                    # Security configuration
-│   └── test/
-│       ├── java/                            # Unit tests
-│       └── resources/                       # Test resources
-├── pom.xml                                  # Maven configuration
-├── LICENSE                                  # License file
-└── README.md                               # This file
-```
-
-## Usage
-
-### Basic SPARQL Queries
-
-The reasoner supports standard SPARQL 1.1 queries with DEC extensions:
-
-```sparql
-PREFIX dec: <http://w3id.org/conjectures/>
-
-# Query for epistemic statements
-SELECT ?s ?p ?o ?world WHERE {
-  GRAPH ?world {
-    ?s ?p ?o .
-    ?world a dec:epistemicWorld .
-  }
-}
-```
-
-### DEC-Specific Features
-
-#### Epistemic Worlds
-```sparql
-# Find statements in epistemic contexts
-SELECT ?statement ?world WHERE {
-  ?world a dec:epistemicWorld .
-  GRAPH ?world { ?statement ?p ?o }
-}
-```
-
-#### Conjectural Statements
-```sparql
-# Query conjectural information
-SELECT ?s ?p ?o WHERE {
-  ?s ?p ?o .
-  ?s dec:conjectural true .
-}
-```
-
-#### Disagreement Analysis
-```sparql
-# Find conflicting statements
-SELECT ?s ?p ?o1 ?o2 WHERE {
-  ?s ?p ?o1 .
-  ?s ?p ?o2 .
-  FILTER(?o1 != ?o2)
-  ?s dec:hasDisagreement true .
-}
-```
-
-### Loading Data
-
-You can load RDF data through:
-
-1. **SPARQL UPDATE endpoint:**
-   ```sparql
-   INSERT DATA {
-     GRAPH <http://example.org/world1> {
-       <http://example.org/alice> <http://example.org/believes> "The earth is round" .
-     }
-   }
-   ```
-
-2. **Web interface:** Upload files through the Fuseki web UI at `http://localhost:3030`
-
-3. **REST API:** Use HTTP PUT/POST to load data programmatically
-
-## Configuration
-
-### Custom Configuration
-
-Create a custom `config.ttl` file:
+A cognitive world can be declared directly:
 
 ```turtle
-@prefix fuseki: <http://jena.apache.org/fuseki#> .
-@prefix dec: <http://w3id.org/conjectures/> .
-
-<#service> a fuseki:Service ;
-    fuseki:name "dec" ;
-    fuseki:serviceQuery "sparql" ;
-    fuseki:serviceUpdate "update" ;
-    fuseki:dataset <#dataset> .
-
-<#dataset> a dec:DecDataset ;
-    dec:enableReasoning true ;
-    dec:disagreementDetection true ;
-    dec:epistemicProcessing true .
+:g1 a dec:doxasticWorld .
+GRAPH :g1 {
+    :Whale rdfs:subClassOf :Fish .
+}
 ```
 
-### Memory Settings
+More commonly, the world type is inferred from the predicate connecting an
+agent or context to the world:
 
-For large datasets, increase JVM memory:
+```turtle
+:believes a dec:doxasticPredicate .
+:bruce :believes :fallacy .
+
+GRAPH :fallacy {
+    :Whale rdfs:subClassOf :Fish .
+}
+```
+
+Reverse predicates are also supported:
+
+```turtle
+:wasDiscoveredBy a dec:epistemicReversePredicate .
+:discovery :wasDiscoveredBy :aristotle .
+
+GRAPH :discovery {
+    :Whale rdfs:subClassOf :Mammal .
+}
+```
+
+A predicate may also be associated with a world type through its range:
+
+```turtle
+:knows rdfs:range dec:epistemicWorld .
+:alice :knows :g1 .
+```
+
+For each DEC category, the implementation recognises three related forms:
+
+| World category | Direct world class | Predicate class | Reverse predicate class |
+|---|---|---|---|
+| verbatim | `dec:verbatimWorld` | `dec:verbatimPredicate` | `dec:verbatimReversePredicate` |
+| shared | `dec:sharedWorld` | `dec:sharedPredicate` | `dec:sharedReversePredicate` |
+| doxastic | `dec:doxasticWorld` | `dec:doxasticPredicate` | `dec:doxasticReversePredicate` |
+| epistemic | `dec:epistemicWorld` | `dec:epistemicPredicate` | `dec:epistemicReversePredicate` |
+| conjectural | `dec:conjecturalWorld` | `dec:conjecturalPredicate` | `dec:conjecturalReversePredicate` |
+| nirvana | `dec:nirvanaWorld` | `dec:nirvanaPredicate` | `dec:nirvanaReversePredicate` |
+| shared | `dec:sharedWorld` | `dec:sharedPredicate` | `dec:sharedReversePredicate` |
+| reality | `dec:realityWorld` | `dec:realityPredicate` | `dec:realityReversePredicate` |
+| union | `dec:unionWorld` | `dec:unionPredicate` | `dec:unionReversePredicate` |
+| colored | `dec:coloredWorld` | `dec:coloredPredicate` | `dec:coloredReversePredicate` |
+| special | `dec:specialWorld` | `dec:specialPredicate` | `dec:specialReversePredicate` |
+| error | `dec:errorWorld` | `dec:errorPredicate` | `dec:errorReversePredicate` |
+
+## Permeation model
+
+DEC worlds differ in the way statements become available across cognitive
+worlds and reality. This availability is called **permeation**.
+
+| World type | Receives from | Permeates to | Inference |
+|---|---|---|---|
+| **verbatim** | nothing | nowhere | no |
+| **shared** | shared | reality and non-verbatim worlds | yes |
+| **doxastic** | shared | nowhere | yes, locally |
+| **epistemic** | shared | reality | yes, locally; consequences become factual |
+| **conjectural** | shared and reality | nowhere | yes, locally |
+| **reality** | shared and epistemic worlds | conjectural worlds | yes |
+| **nirvana** | shared and reality | reality | yes |
+| **union** | nothing | reality | no |
+| **colored** | shared | nowhere | yes, locally |
+| **special** | nothing | nowhere | no |
+| **error** | nothing | nowhere | no |
+
+A **verbatim world** is isolated. Its statements are preserved as reported and
+no inference is performed inside it.
+
+A **shared world** contains background knowledge available to reality and to all
+non-verbatim cognitive worlds. It is useful for common taxonomies, shared
+individuals, and assumptions that every reasoning context should see.
+
+A **doxastic world** represents a belief, opinion, or subjective stance. It
+receives shared knowledge and performs local inference, but its conclusions do
+not become facts and reality does not enter it.
+
+An **epistemic world** represents knowledge, discovery, judgment, or accepted
+evidence. It receives shared knowledge and performs local inference. Its
+contents and consequences permeate into reality.
+
+A **conjectural world** represents a hypothesis or supposition. It receives both
+shared knowledge and reality, so it can reason from known facts plus additional
+assumptions. Its conclusions remain conjectural and do not permeate back into
+reality.
+
+**Reality** contains ordinary factual assertions, shared knowledge, and the
+materialised contribution of epistemic worlds. Reality is also the background
+against which conjectural worlds are evaluated.
+
+## Disagreements and delusional worlds
+
+DEC can materialise two kinds of diagnostic relation:
+
+```turtle
+:g1 dec:disagreesWith :g2 .
+:g1 a dec:delusionalWorld .
+```
+
+Two worlds **disagree** when they cannot be true together. A world is
+**delusional** when it disagrees with reality.
+
+The implementation supports two mechanisms.
+
+### `dec:checkInconsistencies`
+
+```turtle
+[] dec:checkInconsistencies true .
+```
+
+This asks DEC to combine pairs of worlds and delegate inconsistency checking to
+the configured base reasoner. The exact results therefore depend on the
+underlying Jena reasoner and on the ontology available in the dataset.
+
+### `dec:closedFor`
+
+```turtle
+rdf:subject dec:closedFor :author .
+rdf:object  dec:closedFor :creator .
+```
+
+`dec:closedFor` introduces a local closure condition for a given predicate. It
+is useful when alternatives should be treated as mutually exclusive even though
+plain RDF/OWL open-world reasoning would not make them inconsistent.
+
+- `rdf:subject dec:closedFor P` compares the objects used with predicate `P`
+  for the same subject across worlds.
+- `rdf:object dec:closedFor P` compares the subjects used with predicate `P`
+  for the same object across worlds.
+
+## Example: a delusional belief about whales
+
+Bruce believes that whales are fishes. Reality says that whales are mammals,
+and mammals are disjoint from fishes. Shared knowledge says that Moby Dick is a
+whale. In Bruce's doxastic world, Moby Dick is inferred to be a fish; since this
+conflicts with reality, Bruce's world is delusional.
+
+```turtle
+@prefix :    <http://example.org/> .
+@prefix zoo: <http://example.org/zoo/> .
+@prefix dec: <http://w3id.org/conjectures/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+zoo:Whale rdfs:subClassOf zoo:Mammal .
+zoo:Fish owl:disjointWith zoo:Mammal .
+
+GRAPH :shared {
+    :mobydick a zoo:Whale .
+}
+:shared a dec:sharedWorld .
+
+GRAPH :fallacy {
+    zoo:Whale rdfs:subClassOf zoo:Fish .
+}
+:bruce :believes :fallacy .
+:believes a dec:doxasticPredicate .
+
+[] dec:checkInconsistencies true .
+```
+
+Expected behaviour:
+
+- reality infers that `:mobydick` is a `zoo:Mammal`;
+- Bruce's doxastic world infers that `:mobydick` is a `zoo:Fish`;
+- `:fallacy dec:disagreesWith dec:reality` is materialised;
+- `:fallacy a dec:delusionalWorld` is materialised.
+
+## Example: a conjecture about dragons
+
+David supposes that dragons are reptiles. Reality contains Toothless as a
+dragon, but does not contain the claim that dragons are reptiles. Since David's
+world is conjectural, it receives reality and can infer that Toothless is a
+reptile. The conclusion remains conjectural and does not become a fact.
+
+```turtle
+@prefix :    <http://example.org/> .
+@prefix zoo: <http://example.org/zoo/> .
+@prefix dec: <http://w3id.org/conjectures/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+:Toothless a zoo:Dragon .
+zoo:Dragon rdfs:subClassOf zoo:ImaginaryBeing .
+zoo:Reptile rdfs:subClassOf zoo:Animal .
+
+GRAPH :hypothesis {
+    zoo:Dragon rdfs:subClassOf zoo:Reptile .
+}
+
+:david :supposes :hypothesis .
+:supposes a dec:conjecturalPredicate .
+```
+
+Expected behaviour:
+
+- reality contains `:Toothless a zoo:Dragon` and may infer that Toothless is a
+  `zoo:ImaginaryBeing`;
+- David's conjectural world receives reality;
+- inside `:hypothesis`, Toothless is inferred to be a `zoo:Reptile` and a
+  `zoo:Animal`;
+- these conjectural consequences do not permeate back into reality.
+
+## Building
+
+Prerequisites:
+
+- Java 17;
+- Maven 3.6 or later;
+- Apache Jena Fuseki 4.8.0 standalone server, if running through Fuseki.
+
+Build the project:
 
 ```bash
-java -Xmx4g -jar dec-1.0.0.jar
+git clone https://github.com/fvitali/dec-reasoner.git
+cd dec-reasoner
+mvn clean package
 ```
 
-## Integration
+The build creates:
 
-### With DEC Viewer
-
-This reasoner is designed to work with the [DEC Viewer](https://github.com/fvitali/dec-viewer), which provides a web-based interface for visualizing and querying DEC datasets.
-
-### Programmatic Access
-
-```java
-// Java example
-import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.*;
-
-String endpoint = "http://localhost:3030/dec/sparql";
-String queryString = "SELECT ?s ?p ?o WHERE { ?s ?p ?o } LIMIT 10";
-
-QueryExecution qexec = QueryExecutionFactory.sparqlService(endpoint, queryString);
-ResultSet results = qexec.execSelect();
-ResultSetFormatter.out(System.out, results);
+```bash
+target/dec-1.0.0.jar
 ```
 
-## Testing
-
-Run the test suite:
+Run tests:
 
 ```bash
 mvn test
 ```
 
-Tests cover:
-- DEC reasoning logic
-- SPARQL query processing
-- Data loading and persistence
-- Configuration validation
+## Running with Fuseki
 
-## Performance
+The repository contains a Fuseki assembler configuration in:
 
-### Optimization Tips
+```text
+src/main/resources/config.ttl
+```
 
-1. **Indexing**: The reasoner automatically creates appropriate indexes for DEC queries
-2. **Memory**: Allocate sufficient heap space for your dataset size
-3. **Caching**: Enable query result caching for repeated queries
-4. **Batch Loading**: Use SPARQL UPDATE with multiple statements for bulk data loading
+The provided configuration exposes the dataset as `/dec` with the following
+endpoints:
 
-### Benchmarks
+| Endpoint | Purpose |
+|---|---|
+| `/dec/sparql` | SPARQL query |
+| `/dec/update` | SPARQL update |
+| `/dec/get` | Graph Store Protocol read |
+| `/dec/data` | Graph Store Protocol read/write |
 
-Performance varies based on dataset size and query complexity. Typical performance on modern hardware:
-- Simple triple patterns: 1000+ queries/second
-- Complex DEC reasoning: 10-100 queries/second
-- Data loading: 10,000+ triples/second
+To run with a standalone Fuseki server, place the DEC JAR on Fuseki's classpath
+and load the provided configuration. For example:
 
-## Contributing
+```bash
+java -cp "fuseki-server.jar:target/dec-1.0.0.jar" \
+    org.apache.jena.fuseki.cmd.FusekiCmd \
+    --config=src/main/resources/config.ttl
+```
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass (`mvn test`)
-6. Commit your changes (`git commit -m 'Add some amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
+On Windows, replace `:` in the classpath with `;`.
 
-## License
+## Configuration
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+The dataset is installed through `DecDatasetAssembler` and configured in Turtle.
+The relevant options are:
 
-## Support
+```turtle
+@prefix dec: <http://w3id.org/conjectures/> .
 
-For questions, issues, or contributions:
-- GitHub Issues: [Report bugs or request features](https://github.com/fvitali/dec-reasoner/issues)
-- Contact: Reach out to the maintainers through GitHub
+:decDataset
+    dec:location "" ;
+    dec:unionDefaultGraph true ;
+    dec:allowUpdate true ;
+    dec:queryTimeout 60000 ;
+    dec:baseReasoner "http://jena.hpl.hp.com/2003/OWLFBRuleReasoner" ;
+    dec:loggingLevels "1 2 1 1 1 2 1 1 1 1 1" .
+```
+
+| Option | Meaning |
+|---|---|
+| `dec:location` | Dataset location. Empty string uses an in-memory dataset. |
+| `dec:useTDB2` | Use a persistent TDB2 dataset when enabled. |
+| `dec:unionDefaultGraph` | Fuseki/Jena default graph setting exposed by the dataset configuration. |
+| `dec:allowUpdate` | Enables or disables updates. |
+| `dec:queryTimeout` | Query timeout in milliseconds. |
+| `dec:baseReasoner` | URI of the Jena reasoner used for RDF/RDFS/OWL inference. |
+| `dec:loggingLevels` | Space-separated debug levels for internal components. |
+
+## Repository layout
+
+```text
+dec-reasoner/
+├── pom.xml
+├── README.md
+├── LICENSE
+└── src/
+    ├── main/
+    │   ├── java/org/w3id/conjectures/
+    │   │   ├── DecDataset.java
+    │   │   ├── DecDatasetAssembler.java
+    │   │   ├── DecReasoner.java
+    │   │   ├── DecUtils.java
+    │   │   ├── DecWorld.java
+    │   │   └── handler/
+    │   │       ├── DecStatementHandler.java
+    │   │       ├── DefaultGraphHandler.java
+    │   │       ├── NamedGraphHandler.java
+    │   │       ├── RDFStarHandler.java
+    │   │       └── ReificationHandler.java
+    │   └── resources/
+    │       └── config.ttl
+    └── test/
+```
+
+## Current limitations
+
+- DEC Reasoner is a prototype research implementation.
+- Reasoning is materialisation-oriented: updates may trigger reconstruction of
+  world-relative graphs and inferred statements.
+- Inconsistency checking depends on the configured Jena base reasoner.
+- The implemented categories include internal and experimental world types whose
+  behaviour may change.
+- The project is designed to demonstrate the DEC model, not to replace a
+  general-purpose RDF store.
+
+## Related projects
+
+- DEC live demonstrator: <https://w3id.org/conjectures/dec>
+- DEC Viewer source code: <https://github.com/fvitali/dec-viewer>
+- DEC Reasoner source code: <https://github.com/fvitali/dec-reasoner>
 
 ## Citation
 
-If you use this software in academic work, please cite:
-
 ```bibtex
-@software{dec_reasoner,
-  title={DEC Reasoner: A SPARQL Engine for Doxastic, Epistemic, and Conjectural Reasoning},
-  author={Fabio Vitali},
-  year={2025},
-  url={https://github.com/fvitali/dec-reasoner}
+@misc{vitali_pasqual_2026_dec,
+  title        = {Provenance-Enhanced Statements in Knowledge Graphs},
+  author       = {Fabio Vitali and Valentina Pasqual},
+  year         = {2026},
+  eprint       = {2606.15246},
+  archivePrefix = {arXiv},
+  url          = {https://arxiv.org/abs/2606.15246}
 }
 ```
+
+## License
+
+This project is released under the MIT License. See [`LICENSE`](LICENSE).
