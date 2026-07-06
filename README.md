@@ -57,7 +57,7 @@ The main world types are:
 | `dec:doxasticWorld` | A belief, opinion, conviction, or subjective stance independent of reality. |
 | `dec:epistemicWorld` | Knowledge, discovery, judgment, or accepted evidence. Its consequences become factual. |
 | `dec:conjecturalWorld` | A hypothesis or supposition evaluated against reality without becoming factual. |
-| `dec:realityWorld` | The factual core: ordinary assertions, shared knowledge, and epistemic consequences. |
+| `dec:realityWorld` | The factual core: ordinary assertions, facts (even unknown to agents), and epistemic consequences. |
 
 ## Declaring cognitive worlds
 
