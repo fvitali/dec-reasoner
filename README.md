@@ -75,22 +75,14 @@ agent or context to the world:
 
 ```turtle
 :believes a dec:doxasticPredicate .
-:bruce :believes :fallacy .
-
-GRAPH :fallacy {
-    :Whale rdfs:subClassOf :Fish .
-}
+:bruce :believes << :Whale rdfs:subClassOf :Fish >>.
 ```
 
 Reverse predicates are also supported:
 
 ```turtle
-:wasDiscoveredBy a dec:epistemicReversePredicate .
-:discovery :wasDiscoveredBy :aristotle .
-
-GRAPH :discovery {
-    :Whale rdfs:subClassOf :Mammal .
-}
+:wasAttributedTo a dec:epistemicReversePredicate .
+<< :Whale rdfs:subClassOf :Mammal >> :wasAttributedTo :aristotle .
 ```
 
 A predicate may also be associated with a world type through its range:
